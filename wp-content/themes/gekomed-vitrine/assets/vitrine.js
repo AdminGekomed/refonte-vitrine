@@ -8,6 +8,41 @@
   }),{threshold:.25});
   ribbons.forEach(ribbon=>observer.observe(ribbon));
  }
+ // Menu : au survol, une boucle lime entoure l'item, tracée à la main (un tour et un léger dépassement, comme un mot
+ // entouré au feutre). Elle est calculée à la taille de chaque lien, pour garder un trait d'épaisseur constante.
+ const NS='http://www.w3.org/2000/svg';
+ const boucle=(W,H,graine)=>{
+  const hasard=n=>{const x=Math.sin(graine*12.9898+n*78.233)*43758.5453;return x-Math.floor(x);};
+  const cx=W/2,cy=H/2,a=W/2-3,b=H/2-3,pente=(hasard(1)-.5)*.07,phase=hasard(2)*6.28,depart=Math.PI*(.93+hasard(3)*.08);
+  const forme=v=>Math.sign(v)*Math.abs(v)**.8;
+  const pts=[];
+  for(let i=0;i<=96;i++){
+   const t=i/96,th=depart+t*Math.PI*2*1.1,k=(.94+.06*t)*(1+.02*Math.sin(2*th+phase));
+   const x=a*k*forme(Math.cos(th)),y=b*k*forme(Math.sin(th));
+   pts.push([cx+x*Math.cos(pente)-y*Math.sin(pente),cy+x*Math.sin(pente)+y*Math.cos(pente)]);
+  }
+  const f=v=>Math.round(v*10)/10;
+  let d=`M${f(pts[0][0])} ${f(pts[0][1])}`;
+  for(let i=0;i<pts.length-1;i++){
+   const p0=pts[Math.max(0,i-1)],p1=pts[i],p2=pts[i+1],p3=pts[Math.min(pts.length-1,i+2)];
+   d+=`C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${f(p2[0])} ${f(p2[1])}`;
+  }
+  return d;
+ };
+ const boucles=()=>document.querySelectorAll('.gv-nav a').forEach((a,i)=>{
+  let svg=a.querySelector('.gv-nav__boucle');
+  if(!svg){
+   svg=document.createElementNS(NS,'svg');svg.setAttribute('class','gv-nav__boucle');svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+   const path=document.createElementNS(NS,'path');path.setAttribute('pathLength','1');svg.appendChild(path);a.appendChild(svg);
+  }
+  const r=svg.getBoundingClientRect();
+  if(!r.width||!r.height)return;
+  svg.setAttribute('viewBox',`0 0 ${Math.round(r.width)} ${Math.round(r.height)}`);
+  svg.firstChild.setAttribute('d',boucle(Math.round(r.width),Math.round(r.height),i+1));
+ });
+ boucles();
+ (document.fonts?document.fonts.ready:Promise.resolve()).then(boucles);
+ let attente;addEventListener('resize',()=>{clearTimeout(attente);attente=setTimeout(boucles,150);});
  const toggle=document.querySelector('.gv-menu-toggle'), nav=document.querySelector('.gv-nav');
  const close=()=>{toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Ouvrir le menu');nav?.classList.remove('is-open');};
  toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-label',expanded?'Fermer le menu':'Ouvrir le menu');nav.classList.toggle('is-open',expanded);});

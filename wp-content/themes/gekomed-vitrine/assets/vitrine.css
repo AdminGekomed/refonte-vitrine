@@ -62,8 +62,11 @@ img{max-width:100%;height:auto}
 .gv-logo img{width:132px;height:auto}
 .gv-nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,40px)}
 .gv-nav a{position:relative;padding:10px 0;font:500 15px/1 var(--gv-sans);letter-spacing:-.005em;white-space:nowrap;color:var(--gv-ink)}
-.gv-nav a::after{content:'';position:absolute;left:0;right:0;bottom:3px;height:2px;background:var(--gv-lime);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--gv-ease)}
-.gv-nav a:hover::after,.gv-nav a:focus-visible::after,.gv-nav a[aria-current="page"]::after{transform:scaleX(1)}
+/* Boucle lime autour de l'item (dessinée par vitrine.js) : elle se trace au survol et reste sur la page courante. */
+.gv-nav__boucle{position:absolute;left:-16px;top:-6px;width:calc(100% + 32px);height:calc(100% + 12px);overflow:visible;pointer-events:none}
+.gv-nav__boucle path{fill:none;stroke:var(--gv-lime);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset .3s ease-in,opacity 0s .3s}
+.gv-nav a:hover .gv-nav__boucle path,.gv-nav a:focus-visible .gv-nav__boucle path,.gv-nav a[aria-current="page"] .gv-nav__boucle path{stroke-dashoffset:0;opacity:1;transition:stroke-dashoffset .6s var(--gv-ease),opacity 0s}
+@media(prefers-reduced-motion:reduce){.gv-nav__boucle path{transition:none!important}}
 .gv-header__actions{display:flex;align-items:center;gap:14px}
 .gv-shop{display:inline-flex;align-items:center;gap:18px;height:52px;padding:0 16px 0 18px;background:var(--gv-green);color:#fff!important;white-space:nowrap;transition:background .2s}
 .gv-shop__label{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
@@ -633,6 +636,7 @@ img{max-width:100%;height:auto}
 
 /* Menu en DM Sans, sept entrées : resserré sous 1300 px, repliable sous 1150 px pour ne jamais déborder. */
 @media(max-width:1300px){
+ .gv-nav__boucle{left:-13px;width:calc(100% + 26px)}
  .gv-nav{gap:18px}
  .gv-nav a{font-size:14px}
 }
@@ -641,7 +645,7 @@ img{max-width:100%;height:auto}
  .gv-nav{display:none;position:absolute;top:100%;left:0;right:0;padding:12px var(--gv-gutter) 28px;background:#fff;border-bottom:1px solid var(--gv-green)}
  .gv-nav.is-open{display:flex;flex-direction:column;align-items:stretch;gap:0}
  .gv-nav a{padding:18px 0;border-bottom:1px solid var(--gv-line);font-size:17px}
- .gv-nav a::after{display:none}
+ .gv-nav__boucle{display:none}
 }
 
 /* Ordinateur compact / tablette paysage ---------------------------------------- */

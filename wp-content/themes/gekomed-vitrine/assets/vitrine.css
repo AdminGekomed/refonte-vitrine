@@ -62,10 +62,10 @@ img{max-width:100%;height:auto}
 .gv-logo img{width:132px;height:auto}
 .gv-nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,40px)}
 .gv-nav a{position:relative;padding:10px 0;font:500 15px/1 var(--gv-sans);letter-spacing:-.005em;white-space:nowrap;color:var(--gv-ink)}
-/* Survol du menu : surlignage lime derrière le bas du mot, déployé de gauche à droite ; il reste sur la page courante. */
+/* Survol du menu : coup de pinceau lime derrière le mot, peint de gauche à droite ; il reste sur la page courante. */
 .gv-nav a{isolation:isolate}
-.gv-nav a::after{content:'';position:absolute;z-index:-1;left:-4px;right:-4px;bottom:12px;height:9px;background:rgba(111,174,62,.4);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--gv-ease)}
-.gv-nav a:hover::after,.gv-nav a:focus-visible::after,.gv-nav a[aria-current="page"]::after{transform:scaleX(1)}
+.gv-nav a::after{content:'';position:absolute;z-index:-1;left:-8px;right:-8px;bottom:6px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath fill='%236FAE3E' fill-opacity='.5' d='M4 8.5C22 5 46 6.5 72 5.2S128 4 158 4.6c16 .3 30-.8 38 1.6 2.4 3 2.2 8.6.4 12.6-14 2.2-40 .6-68 1.8s-60 1.4-90 1.2c-12 0-22-.6-31-1.6C-.4 15.6.6 11 4 8.5Z'/%3E%3Cpath fill='none' stroke='%236FAE3E' stroke-opacity='.35' stroke-width='1.6' stroke-linecap='round' d='M10 6.4c40-2 90-1.4 130-2.2M14 20.6c36 1 80-.6 120 .2M150 20.4c14 .2 30-.6 44-1.8'/%3E%3Cpath fill='none' stroke='%23fff' stroke-opacity='.35' stroke-width='1.1' stroke-linecap='round' d='M22 11c30-1 62 .4 96-.6M60 15.4c28 .6 58-.2 90-.8'/%3E%3C/svg%3E") center/100% 100% no-repeat;transform:rotate(-1.2deg);clip-path:inset(0 100% 0 0);transition:clip-path .35s var(--gv-ease)}
+.gv-nav a:hover::after,.gv-nav a:focus-visible::after,.gv-nav a[aria-current="page"]::after{clip-path:inset(0 0 0 0)}
 .gv-header__actions{display:flex;align-items:center;gap:14px}
 .gv-shop{display:inline-flex;align-items:center;gap:18px;height:52px;padding:0 16px 0 18px;background:var(--gv-green);color:#fff!important;white-space:nowrap;transition:background .2s}
 .gv-shop__label{display:flex;flex-direction:column;align-items:flex-start;gap:6px}

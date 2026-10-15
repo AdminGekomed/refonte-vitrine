@@ -1,0 +1,112 @@
+/* Catalogue feuilletable dans la DA de la refonte : surcharge du module gekomed-catalogue (mu-plugin, version 1.2.0),
+   chargée seulement par le modèle page-catalogue-reconditionne.php. Le module garde son comportement ; ici, les
+   verts profonds, DM Sans, les libellés en JetBrains Mono, les angles droits et le lime réservé aux traits. */
+.gv-body .gkc{
+ --gkc-deep:var(--gv-green);--gkc-deep-2:var(--gv-mid);--gkc-night:var(--gv-dark);--gkc-ink:var(--gv-ink);--gkc-muted:var(--gv-muted);
+ --gkc-line:var(--gv-line);--gkc-panel:var(--gv-pale);--gkc-lime:var(--gv-lime);--gkc-rail:236px;
+ padding:0 0 clamp(96px,10vw,168px);font-family:var(--gv-sans);color:var(--gv-ink)}
+.gv-body .gkc>:not(.gkc-viewer){max-width:var(--gv-max);padding-left:var(--gv-gutter);padding-right:var(--gv-gutter)}
+.gv-body .gkc :focus-visible{outline:2px solid var(--gv-green);outline-offset:3px}
+.gv-body .gkc h2{font-family:var(--gv-display);font-weight:400;letter-spacing:-.04em;line-height:1.04;color:var(--gv-ink)}
+.gv-body .gkc-kicker{font:500 11px/1.5 var(--gv-mono);letter-spacing:.06em;color:var(--gv-green)}
+
+/* Lecteur : fond blanc, filet d'un bord à l'autre sous le livre ---------------------------------------------- */
+.gv-body .gkc-viewer{padding:clamp(48px,5vw,80px) var(--gv-gutter) clamp(44px,4.4vw,64px);background:#fff;border-bottom:1px solid var(--gv-line)}
+.gv-body .gkc.is-ready .gkc-stage{filter:drop-shadow(0 24px 34px rgba(10,46,34,.17)) drop-shadow(0 1px 3px rgba(10,46,34,.12))}
+.gv-body .gkc-page{background:#fff}
+
+/* Flèches de part et d'autre du livre : carrés filetés de vert */
+.gv-body .gkc-side{width:52px;height:52px;border:1px solid var(--gv-green);border-radius:0;background:#fff;color:var(--gv-green);box-shadow:none;transition:background .2s,color .2s,opacity .2s}
+.gv-body .gkc-side:not(:disabled):hover{transform:none;background:var(--gv-green);color:#fff}
+
+/* Barre d'outils : même dessin que les commandes de la visite 3D (.ga-zoom) */
+.gv-body .gkc-bar{gap:0;margin-top:28px;padding:0;border:1px solid var(--gv-green);border-radius:0;background:#fff;box-shadow:none}
+.gv-body .gkc-bar button{width:46px;height:44px;border-left:1px solid var(--gv-line);border-radius:0;color:var(--gv-green);transition:background .2s}
+.gv-body .gkc-bar button:first-child{border-left:0}
+.gv-body .gkc-bar button:not(:disabled):hover,.gv-body .gkc-bar button[aria-pressed="true"]{background:var(--gv-soft)}
+.gv-body .gkc-count{min-width:108px;padding:0 12px;border-left:1px solid var(--gv-line);font:500 12px/44px var(--gv-mono);letter-spacing:.04em;color:var(--gv-green)}
+.gv-body .gkc-sep{width:5px;height:44px;margin:0;background:none;border-left:1px solid var(--gv-line)}
+.gv-body .gkc-bar svg{width:18px;height:18px}
+.gv-body .gkc-progress{width:232px;height:2px;margin-top:18px;border-radius:0;background:var(--gv-line)}
+.gv-body .gkc-progress span{border-radius:0;background:var(--gv-lime)}
+
+/* Chapitres : colonne flottante à gauche du livre, en liste dépliante sous 1200 px ------------------------- */
+.gv-body .gkc-chapters-kicker{font:500 11px/1.5 var(--gv-mono);letter-spacing:.06em;color:var(--gv-green)}
+.gv-body .gkc-chapters-list a{gap:16px;padding:9px 20px;color:var(--gv-ink);font:400 15px/1.3 var(--gv-sans);letter-spacing:-.005em}
+.gv-body .gkc-chapters-list a:hover{background:var(--gv-pale)}
+.gv-body .gkc-chapters-list a[aria-current="true"]{color:var(--gv-green);font-weight:500}
+.gv-body .gkc-chapters-list a::before{left:-1px;top:6px;bottom:6px;width:3px}
+.gv-body .gkc-chapters-page{font:400 11px/1 var(--gv-mono);letter-spacing:.02em;color:var(--gv-muted)}
+@media (min-width:1200px){
+ /* La colonne prend de la place au livre : marge droite réduite (la flèche y suffit), écart serré. */
+ .gv-body .gkc.is-js .gkc-viewer[data-gkc-viewer]{column-gap:clamp(20px,1.8vw,36px);padding-right:clamp(20px,2vw,40px)}
+ .gv-body .gkc-viewer>.gkc-chapters{padding:20px 0 12px;border:1px solid var(--gv-line);border-radius:0;background:#fff;box-shadow:0 28px 56px -34px rgba(10,46,34,.55)}
+ .gv-body .gkc-chapters-head{width:calc(100% - 40px);margin:0 20px 8px;padding:0 0 14px;border-bottom:1px solid var(--gv-green)}
+}
+@media (max-width:1199px){
+ .gv-body .gkc-viewer>.gkc-chapters{left:var(--gv-gutter);width:min(320px,calc(100% - 2 * var(--gv-gutter)))}
+ .gv-body .gkc-chapters-head{gap:12px;min-height:46px;padding:0 14px 0 16px;border:1px solid var(--gv-green);border-radius:0;box-shadow:0 16px 30px -22px rgba(10,46,34,.55)}
+ .gv-body .gkc-chapters-now{font:500 15px/1 var(--gv-sans);letter-spacing:-.01em;color:var(--gv-green)}
+ .gv-body .gkc-chapters-list{margin-top:6px;border:1px solid var(--gv-green);border-radius:0;box-shadow:0 26px 50px -30px rgba(10,46,34,.55)}
+}
+
+/* Plein écran et vue agrandie : verts profonds */
+.gv-body .gkc-viewer.is-full{padding:24px var(--gv-gutter);border:0;background:radial-gradient(110% 80% at 50% 0%,var(--gv-green) 0%,var(--gv-dark) 72%)}
+.gv-body .gkc-viewer.is-full .gkc-side{border-color:rgba(255,255,255,.32);background:transparent;color:#fff}
+.gv-body .gkc-viewer.is-full .gkc-side:not(:disabled):hover{background:#fff;color:var(--gv-green)}
+.gv-body .gkc-viewer.is-full>.gkc-chapters,.gv-body .gkc-viewer.is-full .gkc-chapters-head,.gv-body .gkc-viewer.is-full .gkc-chapters-list{border-color:rgba(255,255,255,.2);background:rgba(10,46,34,.78)}
+.gv-body .gkc-viewer.is-full .gkc-chapters-head{border-bottom-color:rgba(255,255,255,.3)}
+.gv-body .gkc-viewer.is-full .gkc-chapters-kicker{color:var(--gv-on-dark)}
+.gv-body .gkc-viewer.is-full .gkc-chapters-list a:hover{background:rgba(255,255,255,.08)}
+.gv-body .gkc-viewer.is-full .gkc-chapters-list a,.gv-body .gkc-viewer.is-full .gkc-chapters-now{color:rgba(255,255,255,.82)}
+.gv-body .gkc-viewer.is-full .gkc-chapters-list a[aria-current="true"]{color:#fff}
+.gv-body .gkc-viewer.is-full .gkc-chapters-page{color:rgba(255,255,255,.55)}
+.gv-body .gkc-zoom{background:rgba(10,46,34,.97)}
+.gv-body .gkc-zoom-label{font:500 12px/1 var(--gv-mono);letter-spacing:.04em}
+.gv-body .gkc-zoom-bar button{border:1px solid rgba(255,255,255,.28);border-radius:0;background:transparent}
+.gv-body .gkc-zoom-bar button:not(:disabled):hover{background:rgba(255,255,255,.12)}
+.gv-body .gkc-zoom-close{border-color:#fff!important}
+
+/* Commander -------------------------------------------------------------------------------------------- */
+.gv-body .gkc>.gkc-cta{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:28px clamp(32px,6vw,120px);width:auto;max-width:var(--gv-max);margin-top:clamp(88px,9vw,144px);padding:0 var(--gv-gutter);border-radius:0;background:none;color:var(--gv-ink)}
+.gv-body .gkc-cta-text{display:contents}
+.gv-body .gkc-cta h2{grid-column:1;grid-row:1/span 2;max-width:640px;font-size:var(--gv-h2);color:var(--gv-ink)}
+.gv-body .gkc-cta p{grid-column:2;grid-row:1;max-width:540px;margin:0!important;font-size:16.5px;line-height:1.7;color:var(--gv-muted)}
+.gv-body .gkc-cta-actions{grid-column:2;grid-row:2;gap:12px}
+.gv-body .gkc-btn{gap:28px;min-height:50px;padding:14px 18px;border:1px solid var(--gv-green);border-radius:0;font:500 12px/1.3 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase;justify-content:space-between;transition:background .2s,border-color .2s}
+.gv-body .gkc-btn:hover{transform:none}
+.gv-body .gkc-btn::after{font:400 17px/.8 var(--gv-sans);transition:transform .25s var(--gv-ease)}
+.gv-body .gkc-btn--light{background:var(--gv-green);color:#fff!important}
+.gv-body .gkc-btn--light::after{content:'↗'}
+.gv-body .gkc-btn--light:hover{background:var(--gv-dark);border-color:var(--gv-dark)}
+.gv-body .gkc-btn--ghost{background:#fff;color:var(--gv-green)!important}
+.gv-body .gkc-btn--ghost::after{content:'→'}
+.gv-body .gkc-btn--ghost:hover{background:var(--gv-soft);border-color:var(--gv-green)}
+.gv-body .gkc-btn--light:hover::after{transform:translate(2px,-2px)}
+.gv-body .gkc-btn--ghost:hover::after{transform:translateX(3px)}
+
+/* Au sommaire : filet d'un bord à l'autre au-dessus, libellé souligné de vert comme les autres pages ------ */
+.gv-body .gkc-about{position:relative;gap:clamp(32px,6vw,120px);margin-top:clamp(88px,9vw,144px);padding-top:clamp(88px,9vw,144px)}
+.gv-body .gkc-about::before{content:'';position:absolute;top:0;left:50%;width:100vw;height:1px;background:var(--gv-line);transform:translateX(-50%)}
+.gv-body .gkc-about .gkc-kicker{padding-bottom:14px;margin-bottom:26px!important;border-bottom:1px solid var(--gv-green)}
+.gv-body .gkc-about h2{margin-top:0!important;font-size:clamp(30px,2.7vw,46px)}
+.gv-body .gkc-about-intro p:not(.gkc-kicker){max-width:560px;margin-top:22px!important;font-size:16.5px;line-height:1.7;color:var(--gv-muted)}
+.gv-body .gkc-ranges li{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:20px 0;border-bottom:1px solid var(--gv-line)}
+.gv-body .gkc-ranges li:first-child{border-top:1px solid var(--gv-green)}
+.gv-body .gkc-ranges strong{font:400 21px/1.15 var(--gv-display);letter-spacing:-.025em;color:var(--gv-green)}
+.gv-body .gkc-ranges span{padding-top:2px;font-size:15.5px;line-height:1.6;color:var(--gv-muted)}
+
+@media (max-width:980px){
+ .gv-body .gkc>.gkc-cta{grid-template-columns:1fr}
+ .gv-body .gkc-cta h2,.gv-body .gkc-cta p,.gv-body .gkc-cta-actions{grid-column:1;grid-row:auto}
+}
+@media (max-width:760px){
+ .gv-body .gkc>:not(.gkc-viewer){padding-left:18px;padding-right:18px}
+ .gv-body .gkc>.gkc-cta{padding:0 18px}
+ .gv-body .gkc-viewer{padding-left:18px;padding-right:18px}
+ .gv-body .gkc-viewer>.gkc-chapters{left:18px;width:calc(100% - 36px)}
+ .gv-body .gkc-btn{flex:1 1 100%}
+ .gv-body .gkc-ranges li{grid-template-columns:1fr;gap:6px}
+ .gv-body .gkc-bar button{width:42px}
+ .gv-body .gkc-count{min-width:92px;padding:0 8px}
+}

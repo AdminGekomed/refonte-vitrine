@@ -26,6 +26,9 @@
   var fullBtn = root.querySelector('[data-gkc-act="full"]');
   var pageEls = Array.prototype.slice.call(book.querySelectorAll('.gkc-page'));
   var chips = Array.prototype.slice.call(root.querySelectorAll('.gkc-chapters [data-gkc-goto]'));
+  var chapters = root.querySelector('[data-gkc-chapters]');
+  var chaptersToggle = root.querySelector('[data-gkc-chapters-toggle]');
+  var nowEl = root.querySelector('[data-gkc-now]');
 
   function load(i) {
     var el = pageEls[i];
@@ -110,6 +113,20 @@
   book.style.minWidth = '0';
   book.style.minHeight = '0';
 
+  // Coin qui se soulève au survol : seulement près des deux coins du bas (bas gauche de la page de gauche, bas droit
+  // de la page de droite). Par défaut, la bibliothèque réagit aux quatre coins sur un carré d'un cinquième de la
+  // diagonale de la page, ce qui fait bouger les pages pendant la lecture.
+  var fc = flip.getFlipController && flip.getFlipController();
+  if (fc && typeof fc.isPointOnCorners === 'function') {
+    fc.isPointOnCorners = function (pos) {
+      var r = this.getBoundsRect();
+      var zone = Math.max(48, Math.min(110, r.pageWidth * 0.16));
+      var p = this.render.convertToBook(pos);
+      return p.x > 0 && p.y > 0 && p.x < r.width && p.y < r.height &&
+        p.y > r.height - zone && (p.x < zone || p.x > r.width - zone);
+    };
+  }
+
   function current() { return flip.getCurrentPageIndex(); }
 
   function visible(i) {
@@ -142,6 +159,23 @@
     });
     chips.forEach(function (c) {
       if (c === active) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+    });
+    if (nowEl) nowEl.textContent = active ? active.querySelector('.gkc-chapters-label').textContent : 'Couverture';
+  }
+
+  // Chapitres : colonne fixe à côté du livre sur grand écran ; liste dépliante sous le bouton ailleurs.
+  function chaptersCompact() { return chaptersToggle && getComputedStyle(chaptersToggle).pointerEvents !== 'none'; }
+  function openChapters(on) {
+    if (!chapters) return;
+    chapters.classList.toggle('is-open', on);
+    chaptersToggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (chaptersToggle) {
+    chaptersToggle.addEventListener('click', function () {
+      if (chaptersCompact()) openChapters(!chapters.classList.contains('is-open'));
+    });
+    document.addEventListener('pointerdown', function (e) {
+      if (chapters.classList.contains('is-open') && !chapters.contains(e.target)) openChapters(false);
     });
   }
 
@@ -325,6 +359,7 @@
       e.preventDefault();
       goTo(parseInt(go.getAttribute('data-gkc-goto'), 10));
       if (go.closest('.gkc-chapters')) {
+        if (chapters.classList.contains('is-open')) { openChapters(false); chaptersToggle.focus(); }
         var r = viewer.getBoundingClientRect();
         if (r.top < 0 || r.bottom > window.innerHeight) viewer.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
@@ -358,6 +393,7 @@
     var t = e.target;
     if (t && (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable)) return;
     if (e.key === 'Escape') {
+      if (chapters && chapters.classList.contains('is-open')) { openChapters(false); chaptersToggle.focus(); return; }
       if (!zoom.hidden) { closeZoom(); return; }
       if (viewer.classList.contains('is-max')) { setMax(false); return; }
       if ((document.fullscreenElement || document.webkitFullscreenElement) === viewer) { toggleFull(); return; }

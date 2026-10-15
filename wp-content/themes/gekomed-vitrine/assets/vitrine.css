@@ -415,6 +415,21 @@ img{max-width:100%;height:auto}
 .gv-footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:20px;border-top:1px solid var(--gv-line-dark);color:var(--gv-on-dark);font:400 11px/1.5 var(--gv-mono);letter-spacing:.03em}
 .gv-footer__bottom>div{display:flex;gap:24px}
 .gv-footer a:not(.gv-btn):hover{text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:4px}
+/* « Mesure d’audience » : masqué tant que le mu-plugin GA4 ne l'a pas révélé (pages mesurées de www.gekomed.com). */
+.gv-footer__consent{padding:0;border:0;background:none;color:inherit;letter-spacing:inherit;text-align:left}
+.gv-footer__consent:hover{text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:4px}
+
+/* Bandeau de consentement GA4 (mu-plugin) dans la DA ; la boutique garde le rendu du mu-plugin. --------------- */
+.gv-body #gk-ga4-consent{left:var(--gv-gutter);right:var(--gv-gutter);bottom:24px;max-width:520px;padding:24px;border:1px solid var(--gv-line);border-radius:0;background:#fff;color:var(--gv-ink);box-shadow:0 24px 60px rgba(10,46,34,.18);font:400 14px/1.6 var(--gv-sans)}
+.gv-body #gk-ga4-consent:not([hidden]){display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.gv-body #gk-ga4-consent p{flex:0 0 100%;margin:0 0 8px;color:var(--gv-muted)}
+.gv-body #gk-ga4-consent strong{display:block;margin-bottom:12px;color:var(--gv-green);font:500 11px/1.5 var(--gv-mono);letter-spacing:.06em;text-transform:uppercase}
+.gv-body #gk-ga4-consent strong::before{content:'';display:block;width:40px;height:3px;margin-bottom:16px;background:var(--gv-lime)}
+.gv-body #gk-ga4-consent br{display:none}
+.gv-body #gk-ga4-consent button{min-height:44px;margin:0;padding:12px 18px;border:1px solid var(--gv-green);border-radius:0;background:#fff;color:var(--gv-green);font:500 12px/1.3 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase;transition:background .2s,color .2s}
+.gv-body #gk-ga4-consent button:hover{background:var(--gv-green);color:#fff}
+.gv-body #gk-ga4-consent a{margin-left:auto;color:var(--gv-muted);font:400 11px/1.5 var(--gv-mono);letter-spacing:.03em;text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:4px}
+.gv-body #gk-ga4-consent :focus-visible{outline:2px solid var(--gv-green);outline-offset:3px}
 
 /* Pagination ----------------------------------------------------------------- */
 .gv-pagination{display:flex;justify-content:center;gap:8px;margin-top:56px}
@@ -769,6 +784,9 @@ img{max-width:100%;height:auto}
  .gv-footer__main{gap:30px 20px;padding-bottom:40px}
  .gv-footer__bottom{flex-direction:column;gap:14px}
  .gv-footer__bottom>div{flex-wrap:wrap;gap:20px}
+ .gv-body #gk-ga4-consent{left:12px;right:12px;bottom:12px;padding:20px}
+ .gv-body #gk-ga4-consent button{flex:1}
+ .gv-body #gk-ga4-consent a{margin-left:0}
  .gv-page-hero__inner{padding-left:18px;padding-right:18px}
  .gv-page-hero__run{padding:16px 0 14px}
  .gv-body .gv-page-hero h1{font-size:var(--gv-h1);line-height:.98;overflow-wrap:anywhere}

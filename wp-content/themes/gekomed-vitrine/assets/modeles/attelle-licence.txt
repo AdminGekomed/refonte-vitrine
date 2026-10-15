@@ -1,0 +1,11 @@
+Model Information:
+* title:	Leg brace
+* source:	https://sketchfab.com/3d-models/leg-brace-7bf51c54ad5d4bd1bb188b48dc6473a9
+* author:	Anhbodoi36 (https://sketchfab.com/Anhbodoi36)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Leg brace" (https://sketchfab.com/3d-models/leg-brace-7bf51c54ad5d4bd1bb188b48dc6473a9) by Anhbodoi36 (https://sketchfab.com/Anhbodoi36) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

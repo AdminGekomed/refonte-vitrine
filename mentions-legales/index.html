@@ -1,0 +1,201 @@
+<!doctype html><html lang="fr-FR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mentions Légales &#8211; Gekomed</title>
+<meta name='robots' content='noindex, nofollow' />
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('gv-line-js');</script>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/newsreader-400-italique.woff2" as="font" type="font/woff2" crossorigin>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="gekomed-vitrine-inline-inline-css">
+
+/* Règles des anciennes images Divi retirées le 14/10/2026 : Divi ne sert plus. */
+/* Carte */
+.gekomed-map-wrap { position: relative; }
+.gekomed-map-wrap .leaflet-container { border-radius: 16px !important; }
+.gkm-marker { background: transparent !important; border: 0 !important; }
+/* Style cluster par defaut markercluster, recolore en vert monochrome */
+.leaflet-container .marker-cluster-small,
+.leaflet-container .marker-cluster-medium,
+.leaflet-container .marker-cluster-large { background-color: rgba(74, 168, 109, 0.5) !important; }
+.leaflet-container .marker-cluster-small div,
+.leaflet-container .marker-cluster-medium div,
+.leaflet-container .marker-cluster-large div { background-color: rgba(13, 110, 63, 0.8) !important; color: #fff !important; }
+.leaflet-container .marker-cluster span { color: #fff !important; font-weight: 700; }
+
+/* Barre de recherche d adresse */
+.gekomed-map-wrap .gkm-geo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: stretch;
+}
+.gekomed-map-wrap .gkm-search {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+.gekomed-map-wrap .gkm-search-icon {
+    position: absolute;
+    left: 14px;
+    color: #6b7280;
+    pointer-events: none;
+    z-index: 1;
+}
+.gekomed-map-wrap .gkm-geo-input {
+    width: 100%;
+    padding: 12px 44px 12px 42px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: rgba(255,255,255,.95);
+    color: #1f2937;
+    font-size: 15px;
+    line-height: 1.2;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.gekomed-map-wrap .gkm-geo-input:hover { border-color: #9ca3af; }
+.gekomed-map-wrap .gkm-geo-input:focus {
+    border-color: #0d6e3f;
+    border-width: 2px;
+    padding: 11px 43px 11px 41px;
+    box-shadow: 0 0 0 3px rgba(13,110,63,.18);
+}
+.gekomed-map-wrap .gkm-geo-locate {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    color: #0d6e3f;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.gekomed-map-wrap .gkm-geo-locate:hover { background: rgba(13,110,63,.1); }
+.gekomed-map-wrap .gkm-geo-submit {
+    background: #0d6e3f;
+    color: #fff;
+    border: 0;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease, transform .05s ease;
+}
+.gekomed-map-wrap .gkm-geo-submit:hover { background: #0a5631; }
+.gekomed-map-wrap .gkm-geo-submit:active { transform: translateY(1px); }
+.gekomed-map-wrap .gkm-geo-status {
+    min-height: 18px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+}
+.gekomed-map-wrap .gkm-geo-status.is-error { color: #fda4af; }
+
+/* Marker "votre position" */
+.gkm-user { background: transparent !important; border: 0 !important; }
+.gkm-user-dot {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 6px rgba(37,99,235,.25);
+}
+
+/* Popup interne : titre + tag categorie + adresse + lien */
+.leaflet-popup-content .gkm-popup { font-family: inherit; min-width: 200px; }
+.leaflet-popup-content .gkm-popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+.leaflet-popup-content .gkm-popup-tag {
+    display: inline-block;
+    background: #0d6e3f;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-addr {
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-link {
+    color: #0d6e3f;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+}
+.leaflet-popup-content .gkm-popup-link:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .gekomed-map-wrap .gkm-geo { flex-direction: column; }
+    .gekomed-map-wrap .gkm-geo-submit { width: 100%; }
+    .gekomed-map-wrap .gkm-geo-input { font-size: 14px; padding: 11px 44px 11px 40px; }
+}
+
+/*# sourceURL=gekomed-vitrine-inline-inline-css */
+</style>
+<link rel='stylesheet' id='gv-fonts-css' href='/wp-content/themes/gekomed-vitrine/assets/fonts.css?ver=1791964476' media='all' />
+<link rel='stylesheet' id='gv-design-css' href='/wp-content/themes/gekomed-vitrine/assets/vitrine.css?ver=1792070254' media='all' />
+<meta name="generator" content="WordPress 7.1" />
+<meta name="generator" content="WooCommerce 10.7.0" />
+<link rel="canonical" href="https://refonte.gekomed.com/mentions-legales/" />
+<link rel='shortlink' href='/?p=596' />
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2024/10/cropped-GECKO-Sante--270x270.png" />
+</head><body class="wp-singular page-template-default page page-id-596 wp-embed-responsive wp-theme-gekomed-vitrine gv-body theme-gekomed-vitrine woocommerce-no-js"><a class="gv-skip" href="#main-content">Aller au contenu</a>
+<header class="gv-header"><a class="gv-logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" alt="Gekomed" width="1400" height="243"></a><nav class="gv-nav" id="gv-navigation" aria-label="Navigation principale"><a href="/#action">Notre mission</a><a href="/atelier/">Notre atelier</a><a href="/economies-carbone/">Économies carbone</a><a href="/points-de-collecte/">Points de collecte</a><a href="/blog/">Actualités</a><a href="/contact/">Contact</a></nav><div class="gv-header__actions"><a class="gv-shop" href="https://boutique.gekomed.com/" aria-label="La boutique : les attelles marque Gekomed"><span class="gv-shop__label"><small>Les attelles marque</small><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="" width="823" height="144"></span><span aria-hidden="true">↗</span></a><button class="gv-menu-toggle" type="button" aria-expanded="false" aria-controls="gv-navigation" aria-label="Ouvrir le menu"><span></span><span></span></button></div></header>
+<main id="main-content"><section class="gv-page-hero"><div class="gv-page-hero__media"><img src="/wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-scaled.webp" srcset="/wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-scaled.webp 2560w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-300x225.webp 300w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-1024x768.webp 1024w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-768x576.webp 768w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-1536x1152.webp 1536w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-2048x1536.webp 2048w, /wp-content/uploads/2024/10/geranimo-qzgN45hseN0-unsplash-1280x960.webp 1280w" sizes="100vw" alt="" fetchpriority="high" decoding="async" style="--pos:50% 55%"></div><svg class="gv-page-hero__line" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1"/></svg><div class="gv-page-hero__inner"><div class="gv-page-hero__card"><div class="gv-page-hero__run"><p class="gv-eyebrow">Gekomed · L’orthopédie verte</p></div><div class="gv-page-hero__body"><h1>Mentions Légales</h1></div></div></div></section><div class="gv-page-content gv-prose">
+<p><strong>Dernière mise à jour : 31/10/2024</strong></p>
+<p>Conformément à la Loi pour la Confiance dans l’Économie Numérique (LCEN) du 21 juin 2004, les informations suivantes sont portées à la connaissance des utilisateurs du site <strong>gekomed.com.</strong></p>
+<h2>1. Éditeur du Site</h2>
+<p><strong>Nom de l’entreprise :</strong> Gekomed<br /><strong>Forme juridique :</strong> SAS<br /><strong>Siège social :</strong> 63 Bis rue de Sèvres, 92100 Boulogne-Billancourt<br /><strong>Numéro de SIRET :</strong> 98479286100010<br /><strong>Adresse e-mail de contact :</strong> <a href="mailto:contact@gekomed.com">contact@gekomed.com</a></p>
+<h2>2. Hébergeur du Site</h2>
+<p><strong>Nom de l’hébergeur :</strong> Ionos<br /><strong>Adresse du siège de l’hébergeur :</strong> 7 PLACE DE LA GARE, 57200 SARREGUEMINES<br /><strong>Numéro de SIRET :</strong> 43130377500016</p>
+<h2>3. Droit Applicable et Juridiction Compétente</h2>
+<p>Les présentes mentions légales sont régies par le droit français. En cas de litige et à défaut de résolution amiable, le différend sera porté devant les tribunaux compétents du ressort du siège social de <strong>gekomed.com.</strong></p>
+<h2>4. Contact</h2>
+<p>Pour toute question relative aux mentions légales du site <strong>gekomed.com</strong>, vous pouvez contacter notre équipe à l’adresse suivante : <strong><a href="mailto:contact@gekomed.com">contact@gekomed.com</a></strong>.</p>
+<section class="gv-credits" aria-labelledby="gv-credits-title">
+ <h2 id="gv-credits-title">Crédits du modèle 3D</h2>
+ <p>L’animation de la page d’accueil utilise un modèle 3D publié sur Sketchfab sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" rel="noopener" target="_blank">Creative Commons Attribution 4.0 (CC BY 4.0)</a>. Il a été converti et adapté au style du site.</p>
+ <ul>
+  <li><b>Attelle de genou</b> : « <a href="https://sketchfab.com/3d-models/leg-brace-7bf51c54ad5d4bd1bb188b48dc6473a9" rel="noopener" target="_blank">Leg brace</a> » par <a href="https://sketchfab.com/Anhbodoi36" rel="noopener" target="_blank">Anhbodoi36</a>, CC BY 4.0, déplié, recoloré.</li>
+ </ul>
+</section>
+</div></main><footer class="gv-footer"><div class="gv-footer__top"><div class="gv-footer__claim"><p class="gv-eyebrow">L’orthopédie verte</p><h2>Pour une santé<br>plus <em>durable.</em></h2><a class="gv-btn gv-btn--white" href="/contact/">Nous contacter <span aria-hidden="true">↗</span></a></div><a class="gv-footer__logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="Gekomed" width="823" height="144" loading="lazy"></a></div><div class="gv-footer__main"><div><h3>Gekomed</h3><a href="/#action">Notre mission</a><a href="/economies-carbone/">Nos économies carbone</a><a href="/#partenaires">Nos partenaires</a><a href="/blog/">Nos actualités</a><a href="https://boutique.gekomed.com/">La boutique ↗</a></div><div><h3>Agir ensemble</h3><a href="/points-de-collecte/">Déposer une attelle</a><a href="/collecte/">Nos boîtes de collecte</a><a href="/contact/">Devenir point de collecte</a></div><div><h3>Contact</h3><a href="mailto:contact@gekomed.com">contact@gekomed.com</a><p>63 bis rue de Sèvres<br>92100 Boulogne-Billancourt</p></div></div><div class="gv-footer__bottom"><span>© 2026 Gekomed, l’orthopédie verte</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/conditions-generales-dutilisations/">Conditions d’utilisation</a></div></div></footer><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/gekomed-vitrine/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="gv-ui-js" src="/wp-content/themes/gekomed-vitrine/assets/vitrine.js?ver=1791895640"></script>
+<script id="gv-ligne-entete-js" src="/wp-content/themes/gekomed-vitrine/assets/ligne-entete.js?ver=1792070964"></script>
+</body></html>

@@ -1,0 +1,380 @@
+<!doctype html><html lang="fr-FR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Points de collecte &#8211; Gekomed</title>
+<meta name='robots' content='noindex, nofollow' />
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('gv-line-js');</script>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/newsreader-400-italique.woff2" as="font" type="font/woff2" crossorigin>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="gekomed-vitrine-inline-inline-css">
+
+/* Règles des anciennes images Divi retirées le 14/10/2026 : Divi ne sert plus. */
+/* Carte */
+.gekomed-map-wrap { position: relative; }
+.gekomed-map-wrap .leaflet-container { border-radius: 16px !important; }
+.gkm-marker { background: transparent !important; border: 0 !important; }
+/* Style cluster par defaut markercluster, recolore en vert monochrome */
+.leaflet-container .marker-cluster-small,
+.leaflet-container .marker-cluster-medium,
+.leaflet-container .marker-cluster-large { background-color: rgba(74, 168, 109, 0.5) !important; }
+.leaflet-container .marker-cluster-small div,
+.leaflet-container .marker-cluster-medium div,
+.leaflet-container .marker-cluster-large div { background-color: rgba(13, 110, 63, 0.8) !important; color: #fff !important; }
+.leaflet-container .marker-cluster span { color: #fff !important; font-weight: 700; }
+
+/* Barre de recherche d adresse */
+.gekomed-map-wrap .gkm-geo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: stretch;
+}
+.gekomed-map-wrap .gkm-search {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+.gekomed-map-wrap .gkm-search-icon {
+    position: absolute;
+    left: 14px;
+    color: #6b7280;
+    pointer-events: none;
+    z-index: 1;
+}
+.gekomed-map-wrap .gkm-geo-input {
+    width: 100%;
+    padding: 12px 44px 12px 42px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: rgba(255,255,255,.95);
+    color: #1f2937;
+    font-size: 15px;
+    line-height: 1.2;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.gekomed-map-wrap .gkm-geo-input:hover { border-color: #9ca3af; }
+.gekomed-map-wrap .gkm-geo-input:focus {
+    border-color: #0d6e3f;
+    border-width: 2px;
+    padding: 11px 43px 11px 41px;
+    box-shadow: 0 0 0 3px rgba(13,110,63,.18);
+}
+.gekomed-map-wrap .gkm-geo-locate {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    color: #0d6e3f;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.gekomed-map-wrap .gkm-geo-locate:hover { background: rgba(13,110,63,.1); }
+.gekomed-map-wrap .gkm-geo-submit {
+    background: #0d6e3f;
+    color: #fff;
+    border: 0;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease, transform .05s ease;
+}
+.gekomed-map-wrap .gkm-geo-submit:hover { background: #0a5631; }
+.gekomed-map-wrap .gkm-geo-submit:active { transform: translateY(1px); }
+.gekomed-map-wrap .gkm-geo-status {
+    min-height: 18px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+}
+.gekomed-map-wrap .gkm-geo-status.is-error { color: #fda4af; }
+
+/* Marker "votre position" */
+.gkm-user { background: transparent !important; border: 0 !important; }
+.gkm-user-dot {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 6px rgba(37,99,235,.25);
+}
+
+/* Popup interne : titre + tag categorie + adresse + lien */
+.leaflet-popup-content .gkm-popup { font-family: inherit; min-width: 200px; }
+.leaflet-popup-content .gkm-popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+.leaflet-popup-content .gkm-popup-tag {
+    display: inline-block;
+    background: #0d6e3f;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-addr {
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-link {
+    color: #0d6e3f;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+}
+.leaflet-popup-content .gkm-popup-link:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .gekomed-map-wrap .gkm-geo { flex-direction: column; }
+    .gekomed-map-wrap .gkm-geo-submit { width: 100%; }
+    .gekomed-map-wrap .gkm-geo-input { font-size: 14px; padding: 11px 44px 11px 40px; }
+}
+
+/*# sourceURL=gekomed-vitrine-inline-inline-css */
+</style>
+<link rel='stylesheet' id='gv-fonts-css' href='/wp-content/themes/gekomed-vitrine/assets/fonts.css?ver=1791964476' media='all' />
+<link rel='stylesheet' id='gv-design-css' href='/wp-content/themes/gekomed-vitrine/assets/vitrine.css?ver=1792070254' media='all' />
+<link rel='stylesheet' id='gv-sections-css' href='/wp-content/themes/gekomed-vitrine/assets/sections.css?ver=1791991901' media='all' />
+<link rel='stylesheet' id='gv-pages-css' href='/wp-content/themes/gekomed-vitrine/assets/pages.css?ver=1791980184' media='all' />
+<meta name="generator" content="WordPress 7.1" />
+<meta name="generator" content="WooCommerce 10.7.0" />
+<link rel="canonical" href="https://refonte.gekomed.com/points-de-collecte/" />
+<link rel='shortlink' href='/?p=1387' />
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2024/10/cropped-GECKO-Sante--270x270.png" />
+</head><body class="wp-singular page-template-default page page-id-1387 wp-embed-responsive wp-theme-gekomed-vitrine gv-body theme-gekomed-vitrine woocommerce-no-js"><a class="gv-skip" href="#main-content">Aller au contenu</a>
+<header class="gv-header"><a class="gv-logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" alt="Gekomed" width="1400" height="243"></a><nav class="gv-nav" id="gv-navigation" aria-label="Navigation principale"><a href="/#action">Notre mission</a><a href="/atelier/">Notre atelier</a><a href="/economies-carbone/">Économies carbone</a><a href="/points-de-collecte/" aria-current="page">Points de collecte</a><a href="/blog/">Actualités</a><a href="/contact/">Contact</a></nav><div class="gv-header__actions"><a class="gv-shop" href="https://boutique.gekomed.com/" aria-label="La boutique : les attelles marque Gekomed"><span class="gv-shop__label"><small>Les attelles marque</small><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="" width="823" height="144"></span><span aria-hidden="true">↗</span></a><button class="gv-menu-toggle" type="button" aria-expanded="false" aria-controls="gv-navigation" aria-label="Ouvrir le menu"><span></span><span></span></button></div></header>
+<main id="main-content" class="gx">
+<section class="gv-page-hero"><div class="gv-page-hero__media"><img src="/wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-scaled.jpg" srcset="/wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-scaled.jpg 2560w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-300x225.jpg 300w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-1024x768.jpg 1024w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-768x576.jpg 768w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-1536x1152.jpg 1536w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-2048x1536.jpg 2048w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-clinique-accueil-reconditionnement-1-1280x960.jpg 1280w" sizes="100vw" alt="" fetchpriority="high" decoding="async" style="--pos:26% 74%"></div><svg class="gv-page-hero__line" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1"/></svg><div class="gv-page-hero__inner"><div class="gv-page-hero__card"><div class="gv-page-hero__run"><p class="gv-eyebrow">Points de collecte</p><span class="gv-folio__num" aria-hidden="true">/ 04</span></div><div class="gv-page-hero__body"><h1>Votre attelle a encore <em>un rôle à jouer.</em></h1><div class="gv-page-hero__lead"><p>Retrouvez un point de collecte Gekomed près de chez vous et déposez simplement votre attelle dans l’une de nos boîtes, en pharmacie, en clinique, à l’hôpital ou en cabinet de kiné.</p></div></div></div></div></section><section class="gx-collect gx-collect--page" id="boites" aria-label="Carte des points de collecte">
+  <div class="gx-wrap gx-collect__map">    <div class="gekomed-map-wrap">
+        <form class="gkm-geo" role="search" aria-label="Trouver un point de collecte près de chez moi">
+            <label class="gkm-search">
+                <svg class="gkm-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" class="gkm-geo-input" placeholder="Entrez votre adresse, code postal ou ville" aria-label="Adresse, code postal ou ville" autocomplete="off" />
+                <button type="button" class="gkm-geo-locate" aria-label="Utiliser ma position">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+                </button>
+            </label>
+            <button type="submit" class="gkm-geo-submit">Trouver</button>
+        </form>
+        <div class="gkm-geo-status" role="status" aria-live="polite"></div>
+        <div id="gekomed-map-1" class="gekomed-map" style="width:100%;height:520px;border-radius:16px;overflow:hidden;"></div>
+        <script>
+        (function(){
+            var MARKER_COLOR = '#0F3D2E';
+            var PIN_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 44" width="32" height="44" aria-hidden="true">'
+                + '<path d="M16 0C7.16 0 0 7.16 0 16c0 11 16 28 16 28s16-17 16-28C32 7.16 24.84 0 16 0z" fill="'+MARKER_COLOR+'"/>'
+                + '<circle cx="16" cy="16" r="6" fill="#ffffff"/>'
+                + '</svg>';
+            function pinIcon(){
+                return L.divIcon({
+                    className: 'gkm-marker',
+                    html: PIN_SVG,
+                    iconSize: [32,44],
+                    iconAnchor: [16,42],
+                    popupAnchor: [0,-38]
+                });
+            }
+            var attempts = 0;
+            function init(){
+                if (!window.L) { if (++attempts < 100) { setTimeout(init, 100); } else { var status = document.querySelector(".gkm-geo-status"); if(status) status.textContent = "La carte ne peut pas être chargée. Veuillez recharger la page."; } return; }
+                var el = document.getElementById('gekomed-map-1');
+                if (!el || el.dataset.gkmInit === '1') { return; }
+                el.dataset.gkmInit = '1';
+                var data = window.GKM_POINTS || [];
+
+                var map = L.map(el, { scrollWheelZoom: false, zoomControl: true }).setView([46.8, 2.4], 6);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+                var hasCluster = !!L.markerClusterGroup;
+                var group = hasCluster ? L.markerClusterGroup({
+                    chunkedLoading: true,
+                    showCoverageOnHover: false
+                }) : L.layerGroup();
+                var bounds = [];
+                var icon = pinIcon();
+
+                function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+
+                data.forEach(function(loc){
+                    if (typeof loc.lat !== 'number' || typeof loc.lng !== 'number') { return; }
+                    var m = L.marker([loc.lat, loc.lng], { icon: icon, title: loc.t || '' });
+                    var html = '<div class="gkm-popup">';
+                    html += '<div class="gkm-popup-title">' + escapeHtml(loc.t || '') + '</div>';
+                    if (loc.k) { html += '<span class="gkm-popup-tag">' + escapeHtml(loc.k) + '</span>'; }
+                    if (loc.a) { html += '<div class="gkm-popup-addr">' + escapeHtml(loc.a) + '</div>'; }
+                    html += '<a class="gkm-popup-link" href="https://www.openstreetmap.org/directions?to=' + loc.lat + '%2C' + loc.lng + '" target="_blank" rel="noopener">Itinéraire ↗</a>';
+                    html += '</div>';
+                    m.bindPopup(html);
+                    group.addLayer(m);
+                    bounds.push([loc.lat, loc.lng]);
+                });
+
+                map.addLayer(group);
+                if (bounds.length > 0) { map.fitBounds(bounds, { padding: [30,30], maxZoom: 12 }); }
+                map.on('click', function(){ map.scrollWheelZoom.enable(); });
+                map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
+
+                // Geocoding via Nominatim (OSM) + geolocation HTML5
+                var wrap = el.closest('.gekomed-map-wrap');
+                var form = wrap ? wrap.querySelector('.gkm-geo') : null;
+                var inputAddr = wrap ? wrap.querySelector('.gkm-geo-input') : null;
+                var btnLocate = wrap ? wrap.querySelector('.gkm-geo-locate') : null;
+                var statusEl = wrap ? wrap.querySelector('.gkm-geo-status') : null;
+                var userLayer = L.layerGroup().addTo(map);
+
+                function setStatus(msg, isError){
+                    if (!statusEl) { return; }
+                    statusEl.textContent = msg || '';
+                    statusEl.classList.toggle('is-error', !!isError);
+                }
+
+                function focusOn(lat, lng, label){
+                    userLayer.clearLayers();
+                    var ring = L.divIcon({
+                        className: 'gkm-user',
+                        html: '<span class="gkm-user-dot"></span>',
+                        iconSize: [22,22],
+                        iconAnchor: [11,11]
+                    });
+                    L.marker([lat, lng], { icon: ring, title: label || 'Votre position' }).addTo(userLayer);
+                    map.setView([lat, lng], 12);
+                }
+
+                function geocode(q){
+                    setStatus('Recherche en cours…', false);
+                    var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=fr&q=' + encodeURIComponent(q);
+                    fetch(url, { headers: { 'Accept': 'application/json' } })
+                        .then(function(r){ return r.json(); })
+                        .then(function(res){
+                            if (!res || !res.length) { setStatus('Aucun résultat pour cette adresse.', true); return; }
+                            var lat = parseFloat(res[0].lat), lng = parseFloat(res[0].lon);
+                            if (isNaN(lat) || isNaN(lng)) { setStatus('Adresse invalide.', true); return; }
+                            focusOn(lat, lng, res[0].display_name);
+                            setStatus('');
+                        })
+                        .catch(function(){ setStatus('Erreur réseau, réessayez.', true); });
+                }
+
+                if (form) {
+                    form.addEventListener('submit', function(e){
+                        e.preventDefault();
+                        var q = (inputAddr && inputAddr.value || '').trim();
+                        if (!q) { setStatus('Saisissez une adresse, un code postal ou une ville.', true); return; }
+                        geocode(q);
+                    });
+                }
+                if (btnLocate) {
+                    btnLocate.addEventListener('click', function(){
+                        if (!navigator.geolocation) { setStatus('Géolocalisation indisponible sur ce navigateur.', true); return; }
+                        setStatus('Localisation en cours…', false);
+                        navigator.geolocation.getCurrentPosition(function(pos){
+                            focusOn(pos.coords.latitude, pos.coords.longitude, 'Votre position');
+                            setStatus('');
+                        }, function(){
+                            setStatus('Impossible d\'obtenir votre position.', true);
+                        }, { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 });
+                    });
+                }
+            }
+            // Leaflet, ses styles et les tuiles ne se chargent qu'à l'approche de la carte.
+            var ASSETS = {"css":["/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.css?ver=1.9.4","/wp-content/themes/gekomed-vitrine/assets/vendor/MarkerCluster.css?ver=1.5.3","/wp-content/themes/gekomed-vitrine/assets/vendor/MarkerCluster.Default.css?ver=1.5.3"],"js":["/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.js?ver=1.9.4","/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.markercluster.js?ver=1.5.3"]};
+            function loadLeaflet(){
+                if (window.L && L.markerClusterGroup) { return Promise.resolve(); }
+                if (window.GKM_LEAFLET) { return window.GKM_LEAFLET; }
+                ASSETS.css.forEach(function(href){
+                    if (document.querySelector('link[href="' + href + '"]')) { return; }
+                    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
+                });
+                function js(src){ return new Promise(function(ok, ko){ var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = ko; document.head.appendChild(s); }); }
+                window.GKM_LEAFLET = js(ASSETS.js[0]).then(function(){ return js(ASSETS.js[1]); });
+                return window.GKM_LEAFLET;
+            }
+            var POINTS_URL = "/wp-json/gekomed/v1/points.json";
+            function loadPoints(){
+                if (window.GKM_POINTS_LOAD) { return window.GKM_POINTS_LOAD; }
+                window.GKM_POINTS_LOAD = fetch(POINTS_URL).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+                    .then(function(d){ window.GKM_POINTS = Array.isArray(d) ? d : []; });
+                return window.GKM_POINTS_LOAD;
+            }
+            function start(){ Promise.all([loadLeaflet(), loadPoints()]).then(init, init); }
+            function watch(){
+                var el = document.getElementById('gekomed-map-1');
+                if (!el || !('IntersectionObserver' in window)) { start(); return; }
+                var io = new IntersectionObserver(function(entries){
+                    if (!entries[0].isIntersecting) { return; }
+                    io.disconnect(); start();
+                }, { rootMargin: '900px 0px' });
+                io.observe(el);
+            }
+            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', watch); } else { watch(); }
+        })();
+        </script>
+    </div>
+    </div>
+ <div class="gx-wrap gx-collect__foot">
+  <dl class="gx-collect__kinds">
+   <div><dt>Pharmacies</dt><dd>516</dd></div>
+   <div><dt>Cliniques</dt><dd>57</dd></div>
+   <div><dt>Hôpitaux</dt><dd>36</dd></div>
+   <div><dt>Cabinets de kiné</dt><dd>32</dd></div>
+  </dl>
+  <div class="gx-collect__pro">
+   <p>Vous êtes professionnel de santé et souhaitez installer une boîte chez vous ?</p>
+   <a class="gv-btn" href="/contact/">Devenir point de collecte <span aria-hidden="true">↗</span></a>
+  </div>
+ </div>
+ <div class="gx-wrap"><p class="gx-note">Carte non exhaustive des points de collecte Gekomed. Renseignez une ville, un code postal ou une adresse pour trouver les points les plus proches.</p></div>
+</section>
+<section class="gx-wrap gx-next" aria-labelledby="gx-next-title">
+ <div>
+  <p class="gx-eyebrow">Et après ?</p>
+  <h2 id="gx-next-title">Que devient <em>votre attelle ?</em></h2>
+ </div>
+ <div class="gx-next__body">
+  <p>Une fois la boîte pleine, nous collectons les attelles et les rapportons dans notre atelier en Île-de-France. Elles y sont triées, désinfectées, contrôlées et remises en bon état d’usage, à la main.</p>
+  <div class="gx-next__actions"><a class="gv-btn" href="/atelier/">Visiter notre atelier <span aria-hidden="true">↗</span></a></div>
+ </div>
+</section>
+</main><footer class="gv-footer"><div class="gv-footer__top"><div class="gv-footer__claim"><p class="gv-eyebrow">L’orthopédie verte</p><h2>Pour une santé<br>plus <em>durable.</em></h2><a class="gv-btn gv-btn--white" href="/contact/">Nous contacter <span aria-hidden="true">↗</span></a></div><a class="gv-footer__logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="Gekomed" width="823" height="144" loading="lazy"></a></div><div class="gv-footer__main"><div><h3>Gekomed</h3><a href="/#action">Notre mission</a><a href="/economies-carbone/">Nos économies carbone</a><a href="/#partenaires">Nos partenaires</a><a href="/blog/">Nos actualités</a><a href="https://boutique.gekomed.com/">La boutique ↗</a></div><div><h3>Agir ensemble</h3><a href="/points-de-collecte/">Déposer une attelle</a><a href="/collecte/">Nos boîtes de collecte</a><a href="/contact/">Devenir point de collecte</a></div><div><h3>Contact</h3><a href="mailto:contact@gekomed.com">contact@gekomed.com</a><p>63 bis rue de Sèvres<br>92100 Boulogne-Billancourt</p></div></div><div class="gv-footer__bottom"><span>© 2026 Gekomed, l’orthopédie verte</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/conditions-generales-dutilisations/">Conditions d’utilisation</a></div></div></footer><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/gekomed-vitrine/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="gv-ui-js" src="/wp-content/themes/gekomed-vitrine/assets/vitrine.js?ver=1791895640"></script>
+<script id="gv-ligne-entete-js" src="/wp-content/themes/gekomed-vitrine/assets/ligne-entete.js?ver=1792070964"></script>
+</body></html>

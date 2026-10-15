@@ -1,0 +1,828 @@
+<!doctype html><html lang="fr-FR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gekomed &#8211; Collecte et reconditionnement d&#039;attelles orthopédiques</title>
+<meta name='robots' content='noindex, nofollow' />
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('gv-line-js');</script>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/newsreader-400-italique.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/vendor/three-r128-gekomed.min.js?ver=1791965685" as="script" crossorigin="anonymous" fetchpriority="low" media="(prefers-reduced-motion: no-preference)">
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/modeles/attelle.binz" as="fetch" crossorigin="anonymous" fetchpriority="low" media="(prefers-reduced-motion: no-preference)">
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/dm-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="gekomed-vitrine-inline-inline-css">
+
+/* Règles des anciennes images Divi retirées le 14/10/2026 : Divi ne sert plus. */
+/* Carte */
+.gekomed-map-wrap { position: relative; }
+.gekomed-map-wrap .leaflet-container { border-radius: 16px !important; }
+.gkm-marker { background: transparent !important; border: 0 !important; }
+/* Style cluster par defaut markercluster, recolore en vert monochrome */
+.leaflet-container .marker-cluster-small,
+.leaflet-container .marker-cluster-medium,
+.leaflet-container .marker-cluster-large { background-color: rgba(74, 168, 109, 0.5) !important; }
+.leaflet-container .marker-cluster-small div,
+.leaflet-container .marker-cluster-medium div,
+.leaflet-container .marker-cluster-large div { background-color: rgba(13, 110, 63, 0.8) !important; color: #fff !important; }
+.leaflet-container .marker-cluster span { color: #fff !important; font-weight: 700; }
+
+/* Barre de recherche d adresse */
+.gekomed-map-wrap .gkm-geo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: stretch;
+}
+.gekomed-map-wrap .gkm-search {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+.gekomed-map-wrap .gkm-search-icon {
+    position: absolute;
+    left: 14px;
+    color: #6b7280;
+    pointer-events: none;
+    z-index: 1;
+}
+.gekomed-map-wrap .gkm-geo-input {
+    width: 100%;
+    padding: 12px 44px 12px 42px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: rgba(255,255,255,.95);
+    color: #1f2937;
+    font-size: 15px;
+    line-height: 1.2;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.gekomed-map-wrap .gkm-geo-input:hover { border-color: #9ca3af; }
+.gekomed-map-wrap .gkm-geo-input:focus {
+    border-color: #0d6e3f;
+    border-width: 2px;
+    padding: 11px 43px 11px 41px;
+    box-shadow: 0 0 0 3px rgba(13,110,63,.18);
+}
+.gekomed-map-wrap .gkm-geo-locate {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    color: #0d6e3f;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.gekomed-map-wrap .gkm-geo-locate:hover { background: rgba(13,110,63,.1); }
+.gekomed-map-wrap .gkm-geo-submit {
+    background: #0d6e3f;
+    color: #fff;
+    border: 0;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease, transform .05s ease;
+}
+.gekomed-map-wrap .gkm-geo-submit:hover { background: #0a5631; }
+.gekomed-map-wrap .gkm-geo-submit:active { transform: translateY(1px); }
+.gekomed-map-wrap .gkm-geo-status {
+    min-height: 18px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+}
+.gekomed-map-wrap .gkm-geo-status.is-error { color: #fda4af; }
+
+/* Marker "votre position" */
+.gkm-user { background: transparent !important; border: 0 !important; }
+.gkm-user-dot {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 6px rgba(37,99,235,.25);
+}
+
+/* Popup interne : titre + tag categorie + adresse + lien */
+.leaflet-popup-content .gkm-popup { font-family: inherit; min-width: 200px; }
+.leaflet-popup-content .gkm-popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+.leaflet-popup-content .gkm-popup-tag {
+    display: inline-block;
+    background: #0d6e3f;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-addr {
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-link {
+    color: #0d6e3f;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+}
+.leaflet-popup-content .gkm-popup-link:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .gekomed-map-wrap .gkm-geo { flex-direction: column; }
+    .gekomed-map-wrap .gkm-geo-submit { width: 100%; }
+    .gekomed-map-wrap .gkm-geo-input { font-size: 14px; padding: 11px 44px 11px 40px; }
+}
+
+/*# sourceURL=gekomed-vitrine-inline-inline-css */
+</style>
+<link rel='stylesheet' id='gv-fonts-css' href='/wp-content/themes/gekomed-vitrine/assets/fonts.css?ver=1791964476' media='all' />
+<link rel='stylesheet' id='gv-design-css' href='/wp-content/themes/gekomed-vitrine/assets/vitrine.css?ver=1792070254' media='all' />
+<link rel='stylesheet' id='gv-sections-css' href='/wp-content/themes/gekomed-vitrine/assets/sections.css?ver=1791991901' media='all' />
+<link rel='stylesheet' id='gv-accueil-css' href='/wp-content/themes/gekomed-vitrine/assets/accueil.css?ver=1792070964' media='all' />
+<meta name="generator" content="WordPress 7.1" />
+<meta name="generator" content="WooCommerce 10.7.0" />
+<link rel="canonical" href="https://refonte.gekomed.com/" />
+<link rel='shortlink' href='/' />
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2024/10/cropped-GECKO-Sante--270x270.png" />
+<script>
+(() => {
+ if (location.hash || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 980px) and (max-height: 600px)').matches) return;
+ document.documentElement.classList.add('gx-site-loading');
+ window.GX_PRELOAD_TIMER = setTimeout(() => {
+  const loader = document.getElementById('gx-site-loader');
+  if (loader && loader._gxCancel) loader._gxCancel();
+  else { if (loader) loader.classList.add('is-cancelled'); document.documentElement.classList.remove('gx-site-loading', 'gx-site-revealing'); }
+ }, 8000);
+})();
+</script>
+</head><body class="home wp-singular page-template-default page page-id-11 wp-embed-responsive wp-theme-gekomed-vitrine gv-body theme-gekomed-vitrine woocommerce-no-js"><div id="gx-site-loader" class="gx-site-loader" role="status" aria-live="polite">
+ <img src="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" alt="" width="1400" height="243" aria-hidden="true">
+ <p>Préparation de votre visite</p>
+ <span class="gx-journey__load-track" aria-hidden="true"><span></span></span>
+</div>
+<a class="gv-skip" href="#main-content">Aller au contenu</a>
+<header class="gv-header"><a class="gv-logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" alt="Gekomed" width="1400" height="243"></a><nav class="gv-nav" id="gv-navigation" aria-label="Navigation principale"><a href="/#action">Notre mission</a><a href="/atelier/">Notre atelier</a><a href="/economies-carbone/">Économies carbone</a><a href="/points-de-collecte/">Points de collecte</a><a href="/blog/">Actualités</a><a href="/contact/">Contact</a></nav><div class="gv-header__actions"><a class="gv-shop" href="https://boutique.gekomed.com/" aria-label="La boutique : les attelles marque Gekomed"><span class="gv-shop__label"><small>Les attelles marque</small><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="" width="823" height="144"></span><span aria-hidden="true">↗</span></a><button class="gv-menu-toggle" type="button" aria-expanded="false" aria-controls="gv-navigation" aria-label="Ouvrir le menu"><span></span><span></span></button></div></header>
+<main id="main-content" class="gx">
+
+<section class="gx-process" id="action" aria-labelledby="gx-process-title">
+ <div class="gx-journey" data-journey data-borne-faces="/wp-content/themes/gekomed-vitrine/assets/visuels/borne-faces.webp" data-borne-lid="/wp-content/themes/gekomed-vitrine/assets/visuels/borne-couvercle.webp" data-logo="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" data-etiquette="/wp-content/themes/gekomed-vitrine/assets/visuels/etiquette-reconditionne.webp" data-brace-model="/wp-content/themes/gekomed-vitrine/assets/modeles/attelle.bin" data-brace-model-z="/wp-content/themes/gekomed-vitrine/assets/modeles/attelle.binz">
+  <div class="gx-journey__pin">
+   <canvas class="gx-journey__canvas" aria-hidden="true"></canvas>
+   <img class="gx-journey__still" src="/wp-content/themes/gekomed-vitrine/assets/visuels/parcours-couverture.webp" alt="" width="1585" height="900" fetchpriority="high" aria-hidden="true">
+   <div class="gx-journey__orbit" tabindex="0" role="group" aria-label="Manipuler le modèle 3D" aria-describedby="gx-hero-controls-help" aria-hidden="true" inert></div>
+   <p id="gx-hero-controls-help" class="screen-reader-text">Cliquez et glissez sur la scène pour faire pivoter le modèle. Au clavier, utilisez les touches fléchées. Sur un écran tactile, glissez horizontalement ; le défilement vertical reste disponible.</p>
+   <div class="gx-journey__text">
+    <div class="gx-journey__intro">
+     <p class="gx-eyebrow">Collecte et reconditionnement d’attelles</p>
+     <h1 id="gx-process-title">Prolonger la vie des attelles. <em>Réduire leur empreinte.</em></h1>
+     <p>Grâce au reconditionnement, nous diminuons les déchets et prolongeons la durée de vie des dispositifs médicaux.</p>
+     <div class="gx-journey__actions"><a class="gv-btn" href="/points-de-collecte/">Déposer mon attelle <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="gx-journey__now">
+     <div class="gx-journey__phases">
+      <div class="gx-phase"><span class="screen-reader-text">Collecter</span></div>
+      <div class="gx-phase"><span class="screen-reader-text">Reconditionner</span></div>
+      <div class="gx-phase"><span class="screen-reader-text">Revaloriser</span></div>
+     </div>
+     <ol class="gx-journey__beats">
+      <li class="gx-beat"><span class="gx-beat__k">1 / 10</span><h2>Dépôt en borne</h2><p>Le patient dépose l’attelle dont il n’a plus besoin dans la borne Gekomed de sa pharmacie, de sa clinique ou de son cabinet de kiné.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">2 / 10</span><h2>Collecte</h2><p>Quand la borne est pleine, nous retirons le sac fermé. L’attelle y reste à l’abri jusqu’à l’atelier.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">3 / 10</span><h2>Transport</h2><p>Les sacs collectés rejoignent notre atelier de reconditionnement, en Île-de-France.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">4 / 10</span><h2>Réception et tri</h2><p>À l’atelier, chaque attelle est identifiée et enregistrée dès le tri initial.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">5 / 10</span><h2>Désinfection</h2><p>L’attelle commence par être désinfectée.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">6 / 10</span><h2>Lavage à la main</h2><p>Puis un lavage soigneux, à la main, avant le séchage.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">7 / 10</span><h2>Séchage</h2><p>L’attelle sèche entièrement avant de passer au contrôle.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">8 / 10</span><h2>Contrôle</h2><p>Sangles, coques et articulations sont vérifiées une à une. L’attelle reçoit ensuite l’étiquette « Reconditionné par Gekomed ».</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">9 / 10</span><h2>Mise en carton</h2><p>L’attelle contrôlée est placée dans son carton, qui est refermé et scellé.</p></li>
+      <li class="gx-beat"><span class="gx-beat__k">10 / 10</span><h2>Étiquetage du carton</h2><p>Le carton est étiqueté : l’attelle est prête à être remise en circulation.</p></li>
+     </ol>
+    </div>
+   </div>
+   <nav class="gx-journey__index" aria-label="Étapes du parcours">
+    <ol>
+     <li><b>01 Collecter</b>
+      <ol>
+       <li><button type="button" data-goto="1" aria-label="Dépôt">Dépôt</button></li>
+       <li><button type="button" data-goto="2" aria-label="Collecte">Collecte</button></li>
+       <li><button type="button" data-goto="3" aria-label="Transport">Transport</button></li>
+      </ol>
+     </li>
+     <li><b>02 Reconditionner</b>
+      <ol>
+       <li><button type="button" data-goto="4" aria-label="Réception">Réception</button></li>
+       <li><button type="button" data-goto="5" aria-label="Désinfection">Désinfection</button></li>
+       <li><button type="button" data-goto="6" aria-label="Lavage">Lavage</button></li>
+       <li><button type="button" data-goto="7" aria-label="Séchage">Séchage</button></li>
+       <li><button type="button" data-goto="8" aria-label="Contrôle">Contrôle</button></li>
+      </ol>
+     </li>
+     <li><b>03 Revaloriser</b>
+      <ol>
+       <li><button type="button" data-goto="9" aria-label="Mise en carton">Mise en carton</button></li>
+       <li><button type="button" data-goto="10" aria-label="Étiquetage">Étiquetage</button></li>
+      </ol>
+     </li>
+    </ol>
+   </nav>
+   <span class="gx-journey__bar" role="progressbar" aria-label="Avancement du parcours" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></span>
+  </div>
+ </div>
+ <div class="gx-wrap gx-process__static">
+ <div class="gx-process__grid">
+ <div class="gx-process__aside">
+  <h1>Prolonger la vie des attelles. <em>Réduire leur empreinte.</em></h1>
+  <p>Grâce au reconditionnement, nous diminuons les déchets et prolongeons la durée de vie des dispositifs médicaux.</p>
+  <div class="gx-journey__actions"><a class="gv-btn" href="/points-de-collecte/">Déposer mon attelle <span aria-hidden="true">↗</span></a></div>
+  <div class="gx-process__stage" aria-hidden="true">
+   <img class="is-active" data-stage="0" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-collecte-3d.webp" alt="" width="1200" height="900" loading="lazy">
+   <img data-stage="1" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-reconditionnement-3d.webp" alt="" width="1200" height="900" loading="lazy">
+   <img data-stage="2" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-revalorisation-3d.webp" alt="" width="1200" height="900" loading="lazy">
+  </div>
+ </div>
+ <ol class="gx-process__steps">
+  <li class="gx-step is-active" data-step="0">
+   <span class="gx-step__num" aria-hidden="true">01</span>
+   <img class="gx-step__ill" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-collecte-3d.webp" alt="" width="1200" height="900" loading="lazy">
+   <h3>Collecter</h3>
+   <p>Dès que les boîtes de collecte sont pleines, nous récupérons les attelles auprès de nos partenaires.</p>
+   <ul class="gx-step__tags"><li>Pharmacies</li><li>Cliniques</li><li>Cabinets de kiné</li></ul>
+  </li>
+  <li class="gx-step" data-step="1">
+   <span class="gx-step__num" aria-hidden="true">02</span>
+   <img class="gx-step__ill" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-reconditionnement-3d.webp" alt="" width="1200" height="900" loading="lazy">
+   <h3>Reconditionner</h3>
+   <p>Un procédé strict, qui garantit l’hygiène, la qualité et la traçabilité de chaque attelle.</p>
+   <ul class="gx-step__tags"><li>Tri</li><li>Désinfection</li><li>Lavage</li><li>Séchage</li><li>Contrôle</li><li>Étiquetage</li></ul>
+  </li>
+  <li class="gx-step" data-step="2">
+   <span class="gx-step__num" aria-hidden="true">03</span>
+   <img class="gx-step__ill" src="/wp-content/themes/gekomed-vitrine/assets/visuels/etape-revalorisation-3d.webp" alt="" width="1200" height="900" loading="lazy">
+   <h3>Revaloriser</h3>
+   <p>Une fois triées et traitées, les attelles sont remises en circulation, ou revalorisées via des associations.</p>
+   <ul class="gx-step__tags"><li>Remise en circulation</li><li>Associations</li><li>Recyclage du rebut</li></ul>
+  </li>
+ </ol>
+ </div>
+ </div>
+ <div class="gx-wrap">
+ <ul class="gx-process__pillars" aria-label="Nos engagements">
+  <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/engagement-atelier-simple.svg" alt="" width="96" height="96" loading="lazy" decoding="async" aria-hidden="true"><div class="gx-pillar__copy"><b>Une entreprise française</b><span>Notre atelier de reconditionnement est en Île-de-France.</span></div></li>
+  <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/engagement-attelle-simple.svg" alt="" width="96" height="96" loading="lazy" decoding="async" aria-hidden="true"><div class="gx-pillar__copy"><b>Moins de déchets médicaux</b><span>Chaque attelle remise en circulation évite un dispositif neuf.</span></div></li>
+  <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/engagement-reseau-simple.svg" alt="" width="96" height="96" loading="lazy" decoding="async" aria-hidden="true"><div class="gx-pillar__copy"><b>Un réseau de professionnels engagés</b><span>Officines, cliniques, hôpitaux et cabinets de kiné.</span></div></li>
+ </ul>
+ </div>
+</section>
+
+
+<section class="gx-wrap gx-figures" id="apres-parcours" aria-labelledby="gx-figures-title">
+ <div class="gx-figures__grid">
+  <div class="gx-fig gx-fig--claim" data-reveal>
+   <h2 id="gx-figures-title">Le changement commence par <em>un geste simple.</em></h2>
+   <p>Déposer une attelle inutilisée dans une boîte de collecte, c’est lui offrir la possibilité de servir à nouveau.</p>
+  </div>
+  <div class="gx-fig gx-fig--photo" data-reveal>
+   <img src="/wp-content/themes/gekomed-vitrine/assets/visuels/chiffre-dechets.webp" alt="" width="1024" height="675" loading="lazy">
+   <svg class="gv-ribbon gv-ribbon--figure" viewBox="0 0 530 166" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path d="M-61 132 C-13 154 43 153 84 116 C104 99 137 38 98 21 C62 6 59 61 67 81 C87 131 146 153 197 146 C236 140 272 116 287 79 C295 60 294 24 269 19 C239 14 236 56 242 75 C252 107 280 130 310 140 C361 158 426 142 456 95 C467 77 473 54 463 34 C455 16 431 14 421 32 C381 105 501 171 591 133" pathLength="1"/></svg><svg class="gv-ribbon gv-ribbon--figure-wide" viewBox="0 0 800 187" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path d="M-69 150 C-14 174 50 173 97 130 C120 109 153 43 110 23 C72 5 67 67 75 88 C105 167 213 187 279 144 C306 126 329 98 330 64 C331 44 319 17 295 21 C272 25 268 56 271 74 C278 111 308 140 341 154 C394 178 461 167 502 125 C523 104 551 40 509 23 C483 12 469 45 470 66 C472 100 497 130 526 147 C582 179 660 172 704 122 C722 103 735 74 728 47 C721 20 689 10 675 38 C635 120 768 194 869 150" pathLength="1"/></svg>   <p class="gx-fig__num"><span data-count="8">8</span><small>%</small></p>
+   <p class="gx-fig__text">des émissions de CO₂ françaises sont liées à la santé.</p>
+  </div>
+  <div class="gx-fig gx-fig--green" data-reveal>
+   <p class="gx-fig__num"><span data-count="677">677</span></p>
+   <p class="gx-fig__text">points de collecte référencés dans notre réseau.</p>
+   <a class="gv-text-link" href="/points-de-collecte/">Voir la carte <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="gx-fig gx-fig--soft" data-reveal>
+   <p class="gx-fig__num"><small>≈</small><span data-count="129">129</span></p>
+   <p class="gx-fig__text">canettes : l’économie carbone estimée d’une botte Air haute reconditionnée.</p>
+   <a class="gv-text-link" href="/economies-carbone/#canettes">Calculer pour une attelle <span aria-hidden="true">↗</span></a>
+  </div>
+ </div>
+</section>
+
+<section class="gx-collect" id="boites" aria-labelledby="gx-collect-title">
+  <div class="gx-wrap gx-collect__head">
+  <h2 id="gx-collect-title">Votre attelle a encore <em>un rôle à jouer.</em></h2>
+  <p>Retrouvez un point de collecte Gekomed et déposez simplement votre attelle dans l’une de nos boîtes.</p>
+ </div>
+  <div class="gx-wrap gx-collect__map">    <div class="gekomed-map-wrap">
+        <form class="gkm-geo" role="search" aria-label="Trouver un point de collecte près de chez moi">
+            <label class="gkm-search">
+                <svg class="gkm-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" class="gkm-geo-input" placeholder="Entrez votre adresse, code postal ou ville" aria-label="Adresse, code postal ou ville" autocomplete="off" />
+                <button type="button" class="gkm-geo-locate" aria-label="Utiliser ma position">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+                </button>
+            </label>
+            <button type="submit" class="gkm-geo-submit">Trouver</button>
+        </form>
+        <div class="gkm-geo-status" role="status" aria-live="polite"></div>
+        <div id="gekomed-map-1" class="gekomed-map" style="width:100%;height:520px;border-radius:16px;overflow:hidden;"></div>
+        <script>
+        (function(){
+            var MARKER_COLOR = '#0F3D2E';
+            var PIN_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 44" width="32" height="44" aria-hidden="true">'
+                + '<path d="M16 0C7.16 0 0 7.16 0 16c0 11 16 28 16 28s16-17 16-28C32 7.16 24.84 0 16 0z" fill="'+MARKER_COLOR+'"/>'
+                + '<circle cx="16" cy="16" r="6" fill="#ffffff"/>'
+                + '</svg>';
+            function pinIcon(){
+                return L.divIcon({
+                    className: 'gkm-marker',
+                    html: PIN_SVG,
+                    iconSize: [32,44],
+                    iconAnchor: [16,42],
+                    popupAnchor: [0,-38]
+                });
+            }
+            var attempts = 0;
+            function init(){
+                if (!window.L) { if (++attempts < 100) { setTimeout(init, 100); } else { var status = document.querySelector(".gkm-geo-status"); if(status) status.textContent = "La carte ne peut pas être chargée. Veuillez recharger la page."; } return; }
+                var el = document.getElementById('gekomed-map-1');
+                if (!el || el.dataset.gkmInit === '1') { return; }
+                el.dataset.gkmInit = '1';
+                var data = window.GKM_POINTS || [];
+
+                var map = L.map(el, { scrollWheelZoom: false, zoomControl: true }).setView([46.8, 2.4], 6);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+                var hasCluster = !!L.markerClusterGroup;
+                var group = hasCluster ? L.markerClusterGroup({
+                    chunkedLoading: true,
+                    showCoverageOnHover: false
+                }) : L.layerGroup();
+                var bounds = [];
+                var icon = pinIcon();
+
+                function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+
+                data.forEach(function(loc){
+                    if (typeof loc.lat !== 'number' || typeof loc.lng !== 'number') { return; }
+                    var m = L.marker([loc.lat, loc.lng], { icon: icon, title: loc.t || '' });
+                    var html = '<div class="gkm-popup">';
+                    html += '<div class="gkm-popup-title">' + escapeHtml(loc.t || '') + '</div>';
+                    if (loc.k) { html += '<span class="gkm-popup-tag">' + escapeHtml(loc.k) + '</span>'; }
+                    if (loc.a) { html += '<div class="gkm-popup-addr">' + escapeHtml(loc.a) + '</div>'; }
+                    html += '<a class="gkm-popup-link" href="https://www.openstreetmap.org/directions?to=' + loc.lat + '%2C' + loc.lng + '" target="_blank" rel="noopener">Itinéraire ↗</a>';
+                    html += '</div>';
+                    m.bindPopup(html);
+                    group.addLayer(m);
+                    bounds.push([loc.lat, loc.lng]);
+                });
+
+                map.addLayer(group);
+                if (bounds.length > 0) { map.fitBounds(bounds, { padding: [30,30], maxZoom: 12 }); }
+                map.on('click', function(){ map.scrollWheelZoom.enable(); });
+                map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
+
+                // Geocoding via Nominatim (OSM) + geolocation HTML5
+                var wrap = el.closest('.gekomed-map-wrap');
+                var form = wrap ? wrap.querySelector('.gkm-geo') : null;
+                var inputAddr = wrap ? wrap.querySelector('.gkm-geo-input') : null;
+                var btnLocate = wrap ? wrap.querySelector('.gkm-geo-locate') : null;
+                var statusEl = wrap ? wrap.querySelector('.gkm-geo-status') : null;
+                var userLayer = L.layerGroup().addTo(map);
+
+                function setStatus(msg, isError){
+                    if (!statusEl) { return; }
+                    statusEl.textContent = msg || '';
+                    statusEl.classList.toggle('is-error', !!isError);
+                }
+
+                function focusOn(lat, lng, label){
+                    userLayer.clearLayers();
+                    var ring = L.divIcon({
+                        className: 'gkm-user',
+                        html: '<span class="gkm-user-dot"></span>',
+                        iconSize: [22,22],
+                        iconAnchor: [11,11]
+                    });
+                    L.marker([lat, lng], { icon: ring, title: label || 'Votre position' }).addTo(userLayer);
+                    map.setView([lat, lng], 12);
+                }
+
+                function geocode(q){
+                    setStatus('Recherche en cours…', false);
+                    var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=fr&q=' + encodeURIComponent(q);
+                    fetch(url, { headers: { 'Accept': 'application/json' } })
+                        .then(function(r){ return r.json(); })
+                        .then(function(res){
+                            if (!res || !res.length) { setStatus('Aucun résultat pour cette adresse.', true); return; }
+                            var lat = parseFloat(res[0].lat), lng = parseFloat(res[0].lon);
+                            if (isNaN(lat) || isNaN(lng)) { setStatus('Adresse invalide.', true); return; }
+                            focusOn(lat, lng, res[0].display_name);
+                            setStatus('');
+                        })
+                        .catch(function(){ setStatus('Erreur réseau, réessayez.', true); });
+                }
+
+                if (form) {
+                    form.addEventListener('submit', function(e){
+                        e.preventDefault();
+                        var q = (inputAddr && inputAddr.value || '').trim();
+                        if (!q) { setStatus('Saisissez une adresse, un code postal ou une ville.', true); return; }
+                        geocode(q);
+                    });
+                }
+                if (btnLocate) {
+                    btnLocate.addEventListener('click', function(){
+                        if (!navigator.geolocation) { setStatus('Géolocalisation indisponible sur ce navigateur.', true); return; }
+                        setStatus('Localisation en cours…', false);
+                        navigator.geolocation.getCurrentPosition(function(pos){
+                            focusOn(pos.coords.latitude, pos.coords.longitude, 'Votre position');
+                            setStatus('');
+                        }, function(){
+                            setStatus('Impossible d\'obtenir votre position.', true);
+                        }, { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 });
+                    });
+                }
+            }
+            // Leaflet, ses styles et les tuiles ne se chargent qu'à l'approche de la carte.
+            var ASSETS = {"css":["/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.css?ver=1.9.4","/wp-content/themes/gekomed-vitrine/assets/vendor/MarkerCluster.css?ver=1.5.3","/wp-content/themes/gekomed-vitrine/assets/vendor/MarkerCluster.Default.css?ver=1.5.3"],"js":["/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.js?ver=1.9.4","/wp-content/themes/gekomed-vitrine/assets/vendor/leaflet.markercluster.js?ver=1.5.3"]};
+            function loadLeaflet(){
+                if (window.L && L.markerClusterGroup) { return Promise.resolve(); }
+                if (window.GKM_LEAFLET) { return window.GKM_LEAFLET; }
+                ASSETS.css.forEach(function(href){
+                    if (document.querySelector('link[href="' + href + '"]')) { return; }
+                    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
+                });
+                function js(src){ return new Promise(function(ok, ko){ var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = ko; document.head.appendChild(s); }); }
+                window.GKM_LEAFLET = js(ASSETS.js[0]).then(function(){ return js(ASSETS.js[1]); });
+                return window.GKM_LEAFLET;
+            }
+            var POINTS_URL = "/wp-json/gekomed/v1/points.json";
+            function loadPoints(){
+                if (window.GKM_POINTS_LOAD) { return window.GKM_POINTS_LOAD; }
+                window.GKM_POINTS_LOAD = fetch(POINTS_URL).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+                    .then(function(d){ window.GKM_POINTS = Array.isArray(d) ? d : []; });
+                return window.GKM_POINTS_LOAD;
+            }
+            function start(){ Promise.all([loadLeaflet(), loadPoints()]).then(init, init); }
+            function watch(){
+                var el = document.getElementById('gekomed-map-1');
+                if (!el || !('IntersectionObserver' in window)) { start(); return; }
+                var io = new IntersectionObserver(function(entries){
+                    if (!entries[0].isIntersecting) { return; }
+                    io.disconnect(); start();
+                }, { rootMargin: '900px 0px' });
+                io.observe(el);
+            }
+            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', watch); } else { watch(); }
+        })();
+        </script>
+    </div>
+    </div>
+ <div class="gx-wrap gx-collect__foot">
+  <dl class="gx-collect__kinds">
+   <div><dt>Pharmacies</dt><dd>516</dd></div>
+   <div><dt>Cliniques</dt><dd>57</dd></div>
+   <div><dt>Hôpitaux</dt><dd>36</dd></div>
+   <div><dt>Cabinets de kiné</dt><dd>32</dd></div>
+  </dl>
+  <div class="gx-collect__pro">
+   <p>Vous êtes professionnel de santé et souhaitez installer une boîte chez vous ?</p>
+   <a class="gv-btn" href="/contact/">Devenir point de collecte <span aria-hidden="true">↗</span></a>
+  </div>
+ </div>
+ <div class="gx-wrap"><p class="gx-note">Carte non exhaustive des points de collecte Gekomed. Renseignez une ville, un code postal ou une adresse pour trouver les points les plus proches.</p></div>
+</section>
+
+<section class="gx-wrap gx-partners" id="partenaires" aria-labelledby="gx-partners-title">
+ <p class="gx-eyebrow">Nos partenaires</p>
+ <h2 id="gx-partners-title">Ils nous font <em>confiance.</em></h2>
+ <p class="gx-partners__intro">Hôpitaux, cliniques, officines et cabinets s’engagent avec nous dans la décarbonation de la santé.</p>
+ <ul class="gx-logos">
+    <li data-reveal><img src="/wp-content/uploads/2024/10/logo-hopitaux-pitie-salpetriere.png" alt="Pitié-Salpêtrière AP-HP" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/LOGO-PHARMACTIV-2023-1.webp" alt="Pharmactiv" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo-Ramsay-Sante.webp" alt="Ramsay Santé" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo_CDS.webp" alt="Clinique du sport" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/logo-sfa.webp" alt="Société Francophone d’Arthroscopie" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Groupe-Hospitalier-Lariboisiere-Fernand-Widal-AP-HP-LOGO.webp" alt="Lariboisière AP-HP" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Body-House-Kine.webp" alt="Body House Kiné" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Clinique-du-Sport-Ramsay-1-e1730315884440.webp" alt="Clinique du Landy" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Remove-bg.ai_1730207846952.webp" alt="AthletiK Kiné" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/almaviva-logo.webp" alt="Almaviva Santé" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li data-reveal><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo_ADEME.webp" alt="ADEME" width="190" height="82" loading="lazy" decoding="async"></li>
+    <li class="gx-logos__cta" data-reveal><a href="/contact/"><span>Et vous ?</span> Devenir point de collecte <span aria-hidden="true">↗</span></a></li>
+ </ul>
+</section>
+
+<div class="gx-separateur" data-ligne-separateur aria-hidden="true"><svg class="gv-ligne-fond" preserveAspectRatio="none" focusable="false"><path pathLength="1"/></svg></div>
+<section class="gx-atelier" id="atelier" aria-labelledby="gx-atelier-title" data-apres-ligne>
+ <div class="gx-wrap gx-atelier__head">
+  <p class="gx-eyebrow">Visite virtuelle</p>
+  <h2 id="gx-atelier-title">Découvrez notre atelier <em>de reconditionnement.</em></h2>
+  <p>Notre atelier en Île-de-France nous permet de maîtriser chaque étape, de limiter les intermédiaires et de développer une filière locale. Suivez le parcours d’une attelle, de la porte d’entrée au stock propre.</p>
+  <a class="gv-text-link" href="/atelier/">Visiter l’atelier en détail <span aria-hidden="true">↗</span></a>
+ </div>
+ <div class="gx-wrap">
+  <div class="ga" data-atelier>
+ <div class="ga-stage">
+  <img class="ga-fallback" src="/wp-content/themes/gekomed-vitrine/assets/visuels/atelier-axonometrie.webp" alt="Vue axonométrique de l’atelier Gekomed : réception et tri, lavage et séchage, reconditionnement, stockage et expédition." width="2000" height="1098" loading="lazy">
+  <canvas class="ga-canvas" role="img" aria-label="Maquette 3D de l’atelier de reconditionnement Gekomed"></canvas>
+  <svg class="ga-leaders" aria-hidden="true"></svg>
+  <div class="ga-labels" aria-hidden="true"></div>
+  <div class="ga-place"><strong>Notre atelier en Île-de-France</strong><span>Reconditionnement des attelles</span></div>
+  <div class="ga-tools">
+   <div class="ga-zoom"><button type="button" data-ga-zoom="out" aria-label="Dézoomer">−</button><button type="button" data-ga-zoom="in" aria-label="Zoomer">+</button><button type="button" data-ga-replay>Recentrer</button></div>
+  </div>
+  <p class="ga-hint">Glissez pour faire pivoter, touchez une zone pour l’explorer</p>
+  <div class="ga-loading" aria-hidden="true"><span></span>Chargement de la maquette</div>
+ </div>
+ <div class="ga-panel">
+  <div class="ga-progress" aria-hidden="true"><span></span></div>
+  <p class="ga-count" aria-live="polite">Vue d’ensemble</p>
+  <div class="ga-panel__head"><span class="ga-num" aria-hidden="true">0</span><h3 class="ga-title">Notre atelier</h3></div>
+  <p class="ga-lead">Un atelier organisé en marche en avant : les attelles entrent côté sale et ressortent côté propre, sans jamais revenir en arrière.</p>
+  <ul class="ga-bullets"></ul>
+  <p class="ga-parts"></p>
+  <div class="ga-chips"></div>
+  <div class="ga-nav"><button type="button" class="ga-back" disabled>Précédent</button><button type="button" class="ga-next">Commencer la visite</button></div>
+ </div>
+</div>
+ </div>
+</section>
+
+<section class="gx-wrap gx-simu" id="canettes" aria-labelledby="gx-simu-title">
+  <div class="gv-ligne-fond-calque" data-ligne-fond data-ligne-seule data-ligne-titre=".gx-simu__copy h2, .gx-simu__preview" data-ligne-eviter=".gx-simu__copy > p, .gx-simu__actions" data-ligne-eviter-etroit=".gx-simu__preview" aria-hidden="true"></div>
+ <div class="gx-simu__copy">
+  <p class="gx-eyebrow">Simulateur</p>
+  <h2 id="gx-simu-title">Simulez l’économie d’émissions carbone du reconditionné <em>par rapport au neuf.</em></h2>
+  <p>Choisissez une famille puis un modèle : nous traduisons l’économie carbone estimée de sa version reconditionnée en canettes d’aluminium de 33 cl, avec le détail du calcul.</p>
+  <div class="gx-simu__actions"><a class="gv-btn" href="/economies-carbone/#canettes">Lancer le simulateur <span aria-hidden="true">↗</span></a><a class="gv-text-link" href="/economies-carbone/">Comprendre le calcul <span aria-hidden="true">↗</span></a></div>
+ </div>
+ <div class="gx-simu__preview" data-reveal>
+  <img src="/wp-content/themes/gekomed-vitrine/assets/visuels/canettes-pile-129.webp" alt="" width="984" height="595" loading="lazy" decoding="async">
+  <p class="gx-simu__label">Trois exemples, en canettes de 33 cl</p>
+  <ul class="gx-simu__list">
+      <li><a href="/economies-carbone/?attelle=collier-souple-7-5#canettes">
+    <span class="gx-simu__name">Collier souple, 7,5 cm</span>
+    <span class="gx-simu__bar" aria-hidden="true"><i style="--w:1.6%;--i:0"></i></span>
+    <span class="gx-simu__n">≈ 2<span class="screen-reader-text"> canettes</span></span>
+   </a></li>
+      <li><a href="/economies-carbone/?attelle=botte-air-haute#canettes">
+    <span class="gx-simu__name">Botte Air, haute</span>
+    <span class="gx-simu__bar" aria-hidden="true"><i style="--w:85.9%;--i:1"></i></span>
+    <span class="gx-simu__n">≈ 129<span class="screen-reader-text"> canettes</span></span>
+   </a></li>
+      <li><a href="/economies-carbone/?attelle=genou-rigide-articule#canettes">
+    <span class="gx-simu__name">Genou rigide articulé</span>
+    <span class="gx-simu__bar" aria-hidden="true"><i style="--w:100%;--i:2"></i></span>
+    <span class="gx-simu__n">≈ 151<span class="screen-reader-text"> canettes</span></span>
+   </a></li>
+     </ul>
+ </div>
+</section>
+
+<section class="gx-wrap gx-mails gx-mails--boite" id="temoignages" aria-labelledby="gx-mails-title">
+  <h2 id="gx-mails-title">Particuliers et soignants <em>nous écrivent.</em></h2>
+ <p class="gx-mails__intro">Une sélection de messages reçus via nos formulaires de contact. Identités anonymisées, éléments masqués entre crochets.</p>
+ <div class="gx-inbox" data-inbox>
+  <div class="gx-inbox__side">
+   <div class="gx-inbox__bar">
+    <p class="gx-inbox__title">Boîte de réception <span data-inbox-unread>8 messages</span></p>
+    <div class="gx-inbox__filters" role="group" aria-label="Filtrer les messages">
+     <button type="button" aria-pressed="true" data-filtre="tous">Tous <span>8</span></button>
+     <button type="button" aria-pressed="false" data-filtre="particulier">Particuliers <span>5</span></button>
+     <button type="button" aria-pressed="false" data-filtre="pro">Professionnels de santé <span>3</span></button>
+    </div>
+   </div>
+   <div class="gx-inbox__list" role="tablist" aria-orientation="vertical" aria-label="Messages reçus">
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-1" aria-controls="gx-inbox-msg-1" aria-selected="false" data-public="particulier">
+     <span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un particulier</strong><time datetime="2026-04-28">28 avril 2026</time></span>
+     <span class="gx-inbox__preview">« j&#039;avais cherché il y a quelques années pour donner, je n&#039;avais rien trouvé »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-8" aria-controls="gx-inbox-msg-8" aria-selected="false" data-public="pro">
+     <span class="gx-avatar gx-avatar--pharmacie" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3.5h6v5.5h5.5v6H15v5.5H9V15H3.5V9H9z"/></svg></span>     <span class="gx-inbox__meta"><strong>Une pharmacie</strong><time datetime="2025-12-27">27 décembre 2025</time></span>
+     <span class="gx-inbox__preview">« nous avons bien reçu le carton Gekomed et nous en sommes très satisfaits. »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-4" aria-controls="gx-inbox-msg-4" aria-selected="false" data-public="particulier">
+     <span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un particulier</strong><time datetime="2025-12-07">7 décembre 2025</time></span>
+     <span class="gx-inbox__preview">« J&#039;ai une attelle de jambe que je souhaiterai recycler plutôt que la jeter. »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-6" aria-controls="gx-inbox-msg-6" aria-selected="false" data-public="pro">
+     <span class="gx-avatar gx-avatar--pharmacie" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3.5h6v5.5h5.5v6H15v5.5H9V15H3.5V9H9z"/></svg></span>     <span class="gx-inbox__meta"><strong>Une pharmacie</strong><time datetime="2025-11-25">25 novembre 2025</time></span>
+     <span class="gx-inbox__preview">« je trouve votre initiative très bien ! »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-5" aria-controls="gx-inbox-msg-5" aria-selected="false" data-public="pro">
+     <span class="gx-avatar gx-avatar--soignant" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un kinésithérapeute</strong><time datetime="2025-09-26">26 septembre 2025</time></span>
+     <span class="gx-inbox__preview">« J&#039;aimerais pouvoir leur donner une deuxième vie, et même aider des gens dans le besoin. »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-3" aria-controls="gx-inbox-msg-3" aria-selected="false" data-public="particulier">
+     <span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un particulier</strong><time datetime="2025-08-17">17 août 2025</time></span>
+     <span class="gx-inbox__preview">« Je suis sensible à votre démarche. »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-2" aria-controls="gx-inbox-msg-2" aria-selected="false" data-public="particulier">
+     <span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un particulier</strong><time datetime="2025-02-11">11 février 2025</time></span>
+     <span class="gx-inbox__preview">« c&#039;est désolant qu&#039;elle soit là en attente dans mon placard. »</span>
+    </button>
+        <button type="button" class="gx-inbox__item is-unread" role="tab" id="gx-inbox-tab-7" aria-controls="gx-inbox-msg-7" aria-selected="false" data-public="particulier">
+     <span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span>     <span class="gx-inbox__meta"><strong>Un particulier</strong><time datetime="2024-12-05">5 décembre 2024</time></span>
+     <span class="gx-inbox__preview">« Y a t&#039;il une possibilité de redonner une seconde vie à ces matériels. »</span>
+    </button>
+       </div>
+  </div>
+  <div class="gx-inbox__reader">
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-1" aria-labelledby="gx-inbox-tab-1" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un particulier</strong></p><p class="gx-inbox__via">Reçu le 28 avril 2026 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Il semble que vous ayez un point de dépôt à [lieux masqués], pouvez vous me donner les adresses, <mark>j&#039;avais cherché il y a quelques années pour donner, je n&#039;avais rien trouvé</mark>, ravi d avoir vu votre affiche chez mon podologue, j&#039;ai plusieurs attelles à donner pour recyclage merci</p></div>
+    <footer><a class="gv-btn" href="/#boites">Trouver un point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-8" aria-labelledby="gx-inbox-tab-8" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--pharmacie" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3.5h6v5.5h5.5v6H15v5.5H9V15H3.5V9H9z"/></svg></span><div><p class="gx-inbox__from">De : <strong>Une pharmacie</strong></p><p class="gx-inbox__via">Reçu le 27 décembre 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour, <mark>nous avons bien reçu le carton Gekomed et nous en sommes très satisfaits.</mark></p><p>Sur votre site, nous n&#039;apparaissons pas sur la localisation des pharmacies partenaires. Pouvez vous nous ajouter svp ?</p><p>Merci d&#039;avance. Bien cordialement,</p><p>[Nom de la pharmacie masqué]</p></div>
+    <footer><a class="gv-btn" href="/contact/">Devenir point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-4" aria-labelledby="gx-inbox-tab-4" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un particulier</strong></p><p class="gx-inbox__via">Reçu le 7 décembre 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour,</p><p><mark>J&#039;ai une attelle de jambe que je souhaiterai recycler plutôt que la jeter.</mark> Je suis sur [lieux masqués]. Y a t-il un endroit où la déposer dans le coin?</p><p>Cordialement,</p><p>[Signature masquée]</p></div>
+    <footer><a class="gv-btn" href="/#boites">Trouver un point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-6" aria-labelledby="gx-inbox-tab-6" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--pharmacie" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3.5h6v5.5h5.5v6H15v5.5H9V15H3.5V9H9z"/></svg></span><div><p class="gx-inbox__from">De : <strong>Une pharmacie</strong></p><p class="gx-inbox__via">Reçu le 25 novembre 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour je suis une pharmacie et je souhaiterai avoir une boîte de collecte svp car <mark>je trouve votre initiative très bien !</mark></p><p>Quelle est la procédure svp ?</p><p>Merci</p></div>
+    <footer><a class="gv-btn" href="/contact/">Devenir point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-5" aria-labelledby="gx-inbox-tab-5" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--soignant" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un kinésithérapeute</strong></p><p class="gx-inbox__via">Reçu le 26 septembre 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour.</p><p>Je suis kinésithérapeute et j&#039;ai régulièrement des attelles qui sont déposées peu usagées. <mark>J&#039;aimerais pouvoir leur donner une deuxième vie, et même aider des gens dans le besoin.</mark></p><p>Nous sommes basés sur [ville masquée]. Comment fonctionne exactement les envois des attelles ?</p><p>Merci, Cordialement,</p><p>[Signature masquée]</p></div>
+    <footer><a class="gv-btn" href="/contact/">Devenir point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-3" aria-labelledby="gx-inbox-tab-3" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un particulier</strong></p><p class="gx-inbox__via">Reçu le 17 août 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour</p><p><mark>Je suis sensible à votre démarche.</mark> Comment puis-je vous faire parvenir mes attelles ?</p><p>Cordialement</p></div>
+    <footer><a class="gv-btn" href="/#boites">Trouver un point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-2" aria-labelledby="gx-inbox-tab-2" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un particulier</strong></p><p class="gx-inbox__via">Reçu le 11 février 2025 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour, je dispose d&#039;une attelle neuve de haut de gamme. [Modèle et détails personnels masqués.]</p><p>Comme je n&#039;en n&#039;ai plus besoin j&#039;aimeraisd en faire DON, mais proche d&#039;[une ville masquée] il n&#039;y a pas de collecte, j&#039;aimerais vous l&#039;envoyer par courrier (à mes frais), pouvez vous me donner l&#039;adresse ou je dois l&#039;envoyer, car <mark>c&#039;est désolant qu&#039;elle soit là en attente dans mon placard.</mark></p><p>Merci de votre réponse rapide bien cordialement.</p></div>
+    <footer><a class="gv-btn" href="/#boites">Trouver un point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+      <article class="gx-inbox__msg" role="tabpanel" id="gx-inbox-msg-7" aria-labelledby="gx-inbox-tab-7" tabindex="0">
+    <header><span class="gx-avatar gx-avatar--particulier" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.5c.7-4 3.6-6.6 7.2-6.6s6.5 2.6 7.2 6.6"/></svg></span><div><p class="gx-inbox__from">De : <strong>Un particulier</strong></p><p class="gx-inbox__via">Reçu le 5 décembre 2024 via le formulaire de contact</p></div></header>
+    <div class="gx-inbox__text"><p>Bonjour, j&#039;ai 3 matériels genou et chevilles à donner. J&#039;habite [ville masquée]. <mark>Y a t&#039;il une possibilité de redonner une seconde vie à ces matériels.</mark></p><p>Merci de votre réponse</p></div>
+    <footer><a class="gv-btn" href="/#boites">Trouver un point de collecte <span aria-hidden="true">↗</span></a><button type="button" class="gx-inbox__next" data-inbox-next>Message suivant <span aria-hidden="true">→</span></button></footer>
+   </article>
+     </div>
+ </div>
+
+</section>
+
+<section class="gx-wrap gx-journal" id="actualites" aria-labelledby="gx-journal-title">
+ <div class="gx-journal__head">
+  <p class="gx-eyebrow">Le journal</p>
+  <h2 id="gx-journal-title">Découvrez <em>notre actualité.</em></h2>
+  <a class="gv-text-link" href="/blog/">Toutes les actualités <span aria-hidden="true">↗</span></a>
+ </div>
+ <ol class="gx-carrousel" id="gx-carrousel" data-carrousel aria-label="Derniers articles">  <li class="gx-carte"><a class="gx-carte__lien" href="/recyclage-dattelles-gekomed-a-la-une-du-parisien/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="459" src="/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-768x459.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-768x459.jpg 768w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-300x179.jpg 300w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-1024x612.jpg 1024w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-1536x918.jpg 1536w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-2048x1224.jpg 2048w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-1080x646.jpg 1080w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-1280x765.jpg 1280w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-980x586.jpg 980w, /wp-content/uploads/2026/06/WhatsApp-Image-2026-06-17-at-14.13.39-480x287.jpg 480w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Vie de Gekomed</span>
+    <h3 class="gx-carte__titre">Recyclage d&rsquo;attelles : Gekomed à la une du Parisien</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Notre mission de décarbonation de la santé séduit au-delà du monde médical : Le Parisien a consacré un article à…</span>
+     <span class="gx-carte__pied"><time datetime="2026-06-23">23 juin 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/les-attelles-sont-elles-recyclables/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="432" src="/wp-content/uploads/2026/06/Reyclage-attelles-768x432.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/06/Reyclage-attelles-768x432.jpg 768w, /wp-content/uploads/2026/06/Reyclage-attelles-300x169.jpg 300w, /wp-content/uploads/2026/06/Reyclage-attelles-1024x576.jpg 1024w, /wp-content/uploads/2026/06/Reyclage-attelles-1536x864.jpg 1536w, /wp-content/uploads/2026/06/Reyclage-attelles-1080x608.jpg 1080w, /wp-content/uploads/2026/06/Reyclage-attelles-1280x720.jpg 1280w, /wp-content/uploads/2026/06/Reyclage-attelles-980x552.jpg 980w, /wp-content/uploads/2026/06/Reyclage-attelles-480x270.jpg 480w, /wp-content/uploads/2026/06/Reyclage-attelles.jpg 1672w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Collecte et recyclage</span>
+    <h3 class="gx-carte__titre">Les attelles sont-elles recyclables ?</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Après une opération ou une blessure, beaucoup de patients gardent leur attelle dans un placard… ou la jettent directement à…</span>
+     <span class="gx-carte__pied"><time datetime="2026-06-17">17 juin 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/ou-jeter-une-attelle-orthopedique-gekomed/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="1024" src="/wp-content/uploads/2026/06/IMG_2313-768x1024.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/06/IMG_2313-768x1024.jpg 768w, /wp-content/uploads/2026/06/IMG_2313-225x300.jpg 225w, /wp-content/uploads/2026/06/IMG_2313-1152x1536.jpg 1152w, /wp-content/uploads/2026/06/IMG_2313-1536x2048.jpg 1536w, /wp-content/uploads/2026/06/IMG_2313-1280x1707.jpg 1280w, /wp-content/uploads/2026/06/IMG_2313-scaled.jpg 1920w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Collecte et recyclage</span>
+    <h3 class="gx-carte__titre">Où jeter une attelle orthopédique ?</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Après une entorse, une fracture ou une opération, beaucoup de patients se retrouvent avec la même question : “Où jeter…</span>
+     <span class="gx-carte__pied"><time datetime="2026-06-10">10 juin 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/gekovery-lattelle-de-genou-de-reprise-dactivite/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="1152" src="/wp-content/uploads/2026/05/IMG_0019-2-768x1152.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/05/IMG_0019-2-768x1152.jpg 768w, /wp-content/uploads/2026/05/IMG_0019-2-200x300.jpg 200w, /wp-content/uploads/2026/05/IMG_0019-2-683x1024.jpg 683w, /wp-content/uploads/2026/05/IMG_0019-2-1024x1536.jpg 1024w, /wp-content/uploads/2026/05/IMG_0019-2-1365x2048.jpg 1365w, /wp-content/uploads/2026/05/IMG_0019-2-1080x1620.jpg 1080w, /wp-content/uploads/2026/05/IMG_0019-2-1280x1920.jpg 1280w, /wp-content/uploads/2026/05/IMG_0019-2-980x1470.jpg 980w, /wp-content/uploads/2026/05/IMG_0019-2-480x720.jpg 480w, /wp-content/uploads/2026/05/IMG_0019-2-scaled.jpg 1707w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Nos attelles</span>
+    <h3 class="gx-carte__titre">Gekovery : l’attelle de genou de reprise d’activité</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Après une blessure ou une opération du genou, la prise en charge ne s’arrête pas à l’immobilisation. Une phase clé…</span>
+     <span class="gx-carte__pied"><time datetime="2026-06-01">1 juin 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/poche-de-cryotherapie-compressive-gekofrost/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="732" src="/wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-768x732.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-768x732.jpg 768w, /wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-300x286.jpg 300w, /wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-1024x975.jpg 1024w, /wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-1536x1463.jpg 1536w, /wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403-1080x1029.jpg 1080w, /wp-content/uploads/2026/04/gekofrost-poche-de-cryotherapie-compressive-gekomed.jpg-scaled-e1775034058403.jpg 1707w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Nos attelles</span>
+    <h3 class="gx-carte__titre">Poche de cryothérapie compressive du genou : découvrez Gekofrost</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Parmi tous les dispositifs utilisés après une blessure ou une opération du genou, la cryothérapie reste un incontournable. Mais en…</span>
+     <span class="gx-carte__pied"><time datetime="2026-04-01">1 avril 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/nouveautes-attelles-eco-concues/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="444" src="/wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236-768x444.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236-768x444.jpg 768w, /wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236-300x173.jpg 300w, /wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236-1024x592.jpg 1024w, /wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236-1080x624.jpg 1080w, /wp-content/uploads/2026/03/attelle-genou-cryotherapie-compressive-gekomed-utilisation.jpg-scaled-e1774626299236.jpg 1523w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Nos attelles</span>
+    <h3 class="gx-carte__titre">Nouvelle gamme d&rsquo;attelles éco-conçues Gekomed</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Chez Gekomed, nous avons construit une première filière autour de la collecte et du reconditionnement d’attelles orthopédiques. Aujourd’hui, nous allons…</span>
+     <span class="gx-carte__pied"><time datetime="2026-03-27">27 mars 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/gekomed-rejoint-lincubateur-de-paris-sante-campus/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="432" src="/wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-768x432.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-768x432.jpg 768w, /wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-300x169.jpg 300w, /wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-1024x576.jpg 1024w, /wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-1080x608.jpg 1080w, /wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg-480x270.jpg 480w, /wp-content/uploads/2026/03/paris-sante-campus-innovation-medtech-france.jpg.jpg 1280w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Vie de Gekomed</span>
+    <h3 class="gx-carte__titre">Gekomed rejoint l’incubateur de Paris Santé Campus</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Nous sommes très heureux d’annoncer que Gekomed a rejoint l’incubateur de Paris Santé Campus, l’un des principaux lieux dédiés à…</span>
+     <span class="gx-carte__pied"><time datetime="2026-03-23">23 mars 2026</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+   <li class="gx-carte"><a class="gx-carte__lien" href="/comment-installer-une-borne-de-collecte-dattelles-gekomed/">
+   <span class="gx-carte__image" aria-hidden="true"><img width="768" height="633" src="/wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924-768x633.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" sizes="auto, (max-width: 650px) 80vw, 380px" decoding="async" srcset="/wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924-768x633.jpg 768w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924-300x247.jpg 300w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924-1024x844.jpg 1024w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924-1080x891.jpg 1080w, /wp-content/uploads/2025/12/borne-collecte-attelles-gekomed-hopital-service-reeducation-scaled-e1765544489924.jpg 1180w" /></span>
+   <span class="gx-carte__corps">
+    <span class="gx-carte__sujet">Collecte et recyclage</span>
+    <h3 class="gx-carte__titre">Comment installer une borne de récolte d’attelles?</h3>
+    <span class="gx-carte__plus"><span>
+     <span class="gx-carte__extrait">Vous souhaitez réduire vos déchets médicaux, répondre aux attentes environnementales des patients et renforcer votre démarche RSE ? Mettre en…</span>
+     <span class="gx-carte__pied"><time datetime="2025-12-26">26 décembre 2025</time><span>Lire l’article <span aria-hidden="true">↗</span></span></span>
+    </span></span>
+   </span>
+  </a></li>
+ </ol><div class="gx-journal__piste" aria-hidden="true"><span data-carrousel-pouce></span></div></section>
+
+<section class="gx-wrap gx-faq" aria-labelledby="gx-faq-title">
+ <div class="gx-faq__intro">
+  <h2 id="gx-faq-title">Vous vous posez <em>la question ?</em></h2>
+  <a class="gv-text-link" href="/contact/">Nous contacter <span aria-hidden="true">↗</span></a>
+ </div>
+ <div class="gv-faq" data-reveal>
+    <details><summary>Qui collecte les attelles ?</summary><p>Il vous suffit de trouver un point de collecte proche de chez vous. Nos boîtes sont installées dans les pharmacies, cliniques et cabinets de kinésithérapie partenaires : consultez la carte puis déposez simplement votre attelle usagée.</p></details>
+    <details><summary>Que deviennent les attelles collectées ?</summary><p>Elles rejoignent notre atelier, où elles sont triées, nettoyées selon des normes strictes et reconditionnées. Celles qui ne répondent pas aux critères de qualité sont recyclées dans le respect des normes environnementales.</p></details>
+    <details><summary>Quelles attelles sont acceptées ?</summary><p>La plupart des attelles orthopédiques : poignet, coude, genou, cheville. Si vous avez un doute sur un modèle précis, écrivez-nous.</p></details>
+    <details><summary>Quels critères de qualité ?</summary><p>Chaque attelle est nettoyée, désinfectée et inspectée avant d’être remise sur le marché. Le reconditionnement suit les normes ISO et des contrôles stricts.</p></details>
+   </div>
+</section>
+
+</main><footer class="gv-footer"><div class="gv-footer__top"><div class="gv-footer__claim"><p class="gv-eyebrow">L’orthopédie verte</p><h2>Pour une santé<br>plus <em>durable.</em></h2><a class="gv-btn gv-btn--white" href="/contact/">Nous contacter <span aria-hidden="true">↗</span></a></div><a class="gv-footer__logo" href="/" aria-label="Gekomed, accueil"><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="Gekomed" width="823" height="144" loading="lazy"></a></div><div class="gv-footer__main"><div><h3>Gekomed</h3><a href="/#action">Notre mission</a><a href="/economies-carbone/">Nos économies carbone</a><a href="/#partenaires">Nos partenaires</a><a href="/blog/">Nos actualités</a><a href="https://boutique.gekomed.com/">La boutique ↗</a></div><div><h3>Agir ensemble</h3><a href="/points-de-collecte/">Déposer une attelle</a><a href="/collecte/">Nos boîtes de collecte</a><a href="/contact/">Devenir point de collecte</a></div><div><h3>Contact</h3><a href="mailto:contact@gekomed.com">contact@gekomed.com</a><p>63 bis rue de Sèvres<br>92100 Boulogne-Billancourt</p></div></div><div class="gv-footer__bottom"><span>© 2026 Gekomed, l’orthopédie verte</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/conditions-generales-dutilisations/">Conditions d’utilisation</a></div></div></footer><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/gekomed-vitrine/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="gv-ui-js" src="/wp-content/themes/gekomed-vitrine/assets/vitrine.js?ver=1791895640"></script>
+<script id="gv-ligne-entete-js" src="/wp-content/themes/gekomed-vitrine/assets/ligne-entete.js?ver=1792070964"></script>
+<script id="gv-parcours3d-js" src="/wp-content/themes/gekomed-vitrine/assets/parcours3d.js?ver=1791964523"></script>
+<script id="gv-atelier3d-js" src="/wp-content/themes/gekomed-vitrine/assets/atelier3d.js?ver=1791991901"></script>
+<script id="gv-accueil-js-before">
+window.GX_THREE="\/wp-content\/themes\/gekomed-vitrine\/assets\/vendor\/three-r128-gekomed.min.js?ver=1791965685";
+//# sourceURL=gv-accueil-js-before
+</script>
+<script id="gv-accueil-js" src="/wp-content/themes/gekomed-vitrine/assets/accueil.js?ver=1791985706"></script>
+<script id="gv-temoignages-js" src="/wp-content/themes/gekomed-vitrine/assets/temoignages.js?ver=1791990912"></script>
+</body></html>

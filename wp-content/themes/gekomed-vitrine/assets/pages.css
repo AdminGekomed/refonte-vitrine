@@ -1,0 +1,243 @@
+/* ==========================================================================
+   Pages « Points de collecte », « Notre atelier » et « Économies carbone » :
+   carte en tête de page, sections de l'atelier (organisation,
+   étapes, priorités, cadre RBEU, lettre), calcul carbone, limites et appel
+   final. Angles vifs, comme l'accueil.
+   ========================================================================== */
+
+/* Carte sans titre propre, juste sous l'en-tête. */
+.gx-collect.gx-collect--page{padding-top:clamp(28px,3vw,44px);border-top:0}
+.gx-collect--page .gx-collect__map{margin-top:0}
+
+/* Organisation : texte et photo ----------------------------------------------- */
+.gx-split{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);align-items:center;gap:clamp(40px,6vw,112px);padding-top:var(--gx-section);padding-bottom:var(--gx-section)}
+.gx-split__copy h2{max-width:720px}
+.gx-split__copy p:not(.gx-eyebrow){max-width:600px;margin-top:22px;color:var(--gv-muted);font-size:16.5px;line-height:1.7}
+.gx-split__photo{margin:0}
+.gx-split__photo img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:1px solid var(--gv-green)}
+.gx-split__photo figcaption{margin-top:14px;color:var(--gv-muted);font:400 11px/1.6 var(--gv-mono)}
+
+/* Cinq étapes ----------------------------------------------------------------- */
+.gx-steps{padding:var(--gx-section) 0;background:var(--gv-pale);border-top:1px solid var(--gv-line)}
+.gx-steps__head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);align-items:end;gap:clamp(32px,5vw,96px)}
+.gv-body p.gx-steps__stat{color:var(--gv-muted);font-size:15.5px;line-height:1.6}
+.gx-steps__stat b{display:block;margin-bottom:12px;color:var(--gv-green);font:400 clamp(44px,4.4vw,76px)/.9 var(--gv-display);letter-spacing:-.055em}
+.gx-steps__list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:clamp(40px,4vw,64px) 0 0;padding:0;list-style:none;background:#fff;border:1px solid var(--gv-green)}
+.gx-steps__list li{display:flex;flex-direction:column;padding:clamp(20px,2vw,32px);border-left:1px solid var(--gv-line)}
+.gx-steps__list li:first-child{border-left:0}
+.gx-steps__num{color:var(--gv-green);font:400 clamp(56px,4.6vw,84px)/.8 var(--gv-display);letter-spacing:-.06em}
+.gv-body .gx-steps__list h3{margin-top:clamp(28px,3vw,48px);font-size:clamp(19px,1.4vw,23px);line-height:1.15;letter-spacing:-.025em}
+.gx-steps__list p{margin-top:12px;color:var(--gv-muted);font-size:14.5px;line-height:1.6}
+
+/* Priorités : bandeau vert profond ---------------------------------------------- */
+.gx-priorities{padding:var(--gx-section) 0;background:var(--gv-green);color:#fff}
+.gv-body .gx-priorities .gx-eyebrow{color:var(--gv-on-dark)}
+.gv-body .gx-priorities h2,.gv-body .gx-priorities h3{color:#fff}
+.gx-priorities__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:clamp(40px,4vw,64px) 0 0;padding:0;list-style:none;border-top:1px solid var(--gv-line-dark)}
+.gx-priorities__list li{padding:clamp(24px,2.4vw,36px) clamp(20px,2.4vw,40px) 0 0}
+.gx-priorities__list li+li{padding-left:clamp(20px,2.4vw,40px);border-left:1px solid var(--gv-line-dark)}
+.gx-priorities__list li::before{content:'';display:block;width:28px;height:3px;margin-bottom:22px;background:var(--gv-lime)}
+.gv-body .gx-priorities__list h3{font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.03em}
+.gx-priorities__list p{max-width:420px;margin-top:12px;color:var(--gv-on-dark);font-size:15px;line-height:1.65}
+
+/* Cadre réglementaire RBEU ------------------------------------------------------ */
+.gx-rbeu{padding-top:var(--gx-section);padding-bottom:var(--gx-section)}
+.gx-rbeu__head{max-width:980px}
+.gx-rbeu__head>p:not(.gx-eyebrow){max-width:720px;margin-top:24px;color:var(--gv-muted);font-size:16.5px;line-height:1.7}
+.gx-rbeu__grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start;gap:clamp(32px,5vw,96px);margin-top:clamp(40px,4vw,64px)}
+.gx-rbeu__texts{margin:0;padding:0;list-style:none;border-top:1px solid var(--gv-green)}
+.gx-rbeu__texts li{display:grid;grid-template-columns:minmax(110px,2fr) minmax(0,5fr);column-gap:clamp(20px,3vw,48px);padding:24px 0;border-bottom:1px solid var(--gv-line)}
+.gx-rbeu__texts time{grid-row:span 2;color:var(--gv-green);font:500 11px/1.6 var(--gv-mono);letter-spacing:.06em;text-transform:uppercase}
+.gv-body .gx-rbeu__texts h3{font-size:clamp(19px,1.4vw,22px);line-height:1.2;letter-spacing:-.025em}
+.gx-rbeu__texts p{margin-top:8px;color:var(--gv-muted);font-size:15px;line-height:1.65}
+.gv-body .gx-rbeu__texts a{color:var(--gv-green);text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:3px}
+.gx-rbeu__card{position:sticky;top:calc(var(--gv-header) + 24px);padding:clamp(24px,2.6vw,40px);background:var(--gv-soft);border:1px solid var(--gv-green)}
+.gv-body .gx-rbeu__card h3{font-size:clamp(24px,2vw,32px);line-height:1.1;letter-spacing:-.035em}
+.gx-rbeu__card p:not(.gx-eyebrow){margin-top:16px;color:var(--gv-ink);font-size:15px;line-height:1.65}
+.gx-rbeu__card ul{display:grid;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.gx-rbeu__card li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.55}
+.gx-rbeu__card li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--gv-green)}
+.gx-rbeu>.gx-note{margin-top:32px}
+.gx-nobr{white-space:nowrap}
+
+/* Lettre du directeur général ------------------------------------------------- */
+.gx-letter{padding:var(--gx-section) 0;background:var(--gv-pale);border-top:1px solid var(--gv-line)}
+.gx-letter figure{margin-top:0;margin-bottom:0}
+.gv-body .gx-letter blockquote{max-width:1120px;margin:0;padding:0;border:0}
+.gx-letter blockquote::before{content:'“';display:block;height:.42em;color:var(--gv-lime);font:400 clamp(96px,8vw,140px)/1 var(--gv-serif)}
+.gv-body .gx-letter blockquote p{color:var(--gv-green);font:italic 400 clamp(25px,2.5vw,40px)/1.24 var(--gv-serif);letter-spacing:-.02em}
+.gv-body .gx-letter blockquote p+p{margin-top:.75em}
+.gx-letter figcaption{margin-top:clamp(28px,3vw,44px)}
+.gx-letter figcaption strong{display:block;color:var(--gv-ink);font-size:16px;font-weight:500}
+.gx-letter figcaption span{display:block;margin-top:6px;color:var(--gv-muted);font:400 11px/1.5 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase}
+
+/* Économies carbone : principe du calcul ---------------------------------------- */
+.gx-formula{padding-top:var(--gx-section);padding-bottom:var(--gx-section)}
+.gx-formula__head{max-width:980px}
+.gx-formula__head>p:not(.gx-eyebrow){max-width:720px;margin-top:24px;color:var(--gv-muted);font-size:16.5px;line-height:1.7}
+.gx-formula__calc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:clamp(40px,4vw,64px) 0 0;background:#fff;border:1px solid var(--gv-green)}
+.gx-formula__calc>div{display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(20px,2vw,32px);border-left:1px solid var(--gv-line)}
+.gx-formula__calc>div:first-child{border-left:0}
+.gx-formula__calc dt{max-width:220px;color:var(--gv-muted);font-size:14px;line-height:1.45}
+.gx-formula__calc dd{margin:0;color:var(--gv-green);font:400 clamp(40px,3.6vw,64px)/.9 var(--gv-display);letter-spacing:-.05em;white-space:nowrap}
+.gx-formula__calc dd i{margin-right:.14em;font-style:normal;font-size:.55em;letter-spacing:0;vertical-align:.12em}
+.gx-formula__calc dd small{font:italic 400 .34em/1 var(--gv-serif);letter-spacing:0}
+.gx-formula__calc>div:nth-child(3){background:var(--gv-pale)}
+.gx-formula__calc>div:last-child{background:var(--gv-green)}
+.gx-formula__calc>div:last-child dt{color:var(--gv-on-dark)}
+.gx-formula__calc>div:last-child dd{color:#fff}
+.gx-formula__foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 32px;margin-top:16px}
+.gv-body .gx-formula__foot p{color:var(--gv-muted);font:400 11px/1.65 var(--gv-mono)}
+
+/* Économies carbone : postes de l'empreinte du neuf, avec pictogrammes (catalogue p. 38) ---- */
+.gx-postes li{justify-content:flex-start}
+.gx-postes__picto{display:block;width:clamp(44px,3.6vw,58px);height:auto;color:var(--gv-lime);transition:transform .45s var(--gv-ease)}
+.gx-postes li:hover .gx-postes__picto{transform:translateY(-3px)}
+.gv-body .gx-postes h3{margin-top:clamp(26px,2.6vw,40px)}
+.gv-body .gx-postes__more{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:18px;color:var(--gv-green);font:500 11px/1.4 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase}
+.gx-postes__more span{transition:transform .25s var(--gv-ease)}
+.gx-postes__more:hover span{transform:translateY(2px)}
+.gx-postes__share{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,4fr);margin-top:14px}
+.gv-body .gx-postes__share p{position:relative;margin:0 clamp(12px,1.2vw,20px);padding-top:16px;color:var(--gv-muted);font:400 11px/1.5 var(--gv-mono);text-align:center}
+.gx-postes__share p::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;border:2px solid var(--gv-green);border-top:0}
+.gx-postes__share p:first-child::before{border-color:var(--gv-lime)}
+
+/* Notre atelier : étapes avec pictogramme et numéro d'ordre */
+.gx-etapes__top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.gx-etapes__num{color:var(--gv-green);font:400 clamp(22px,1.8vw,30px)/1 var(--gv-display);letter-spacing:-.04em}
+.gx-etapes li{position:relative}
+.gx-etapes li+li::before{content:'';position:absolute;left:-7px;top:calc(clamp(20px,2vw,32px) + clamp(22px,1.8vw,29px) - 7px);width:12px;height:12px;background:#fff;border-top:1px solid var(--gv-green);border-right:1px solid var(--gv-green);transform:rotate(45deg)}
+
+/* Économies carbone : facteurs d'émission par matière (catalogue p. 38) ------------- */
+.gx-fact{margin-top:clamp(40px,4vw,64px);padding:clamp(24px,3vw,48px);background:#fff;border:1px solid var(--gv-green)}
+.gx-fact__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px}
+.gx-fact__head>div{max-width:640px}
+.gv-body .gx-fact h3{font-size:clamp(26px,2.4vw,38px);line-height:1.05;letter-spacing:-.035em}
+.gv-body .gx-fact__head p:not(.gx-eyebrow){margin-top:14px;color:var(--gv-muted);font-size:15.5px;line-height:1.65}
+.gx-fact__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);align-items:start;gap:clamp(24px,3vw,48px);margin-top:clamp(28px,3vw,44px)}
+.gx-fact__chart{--name:clamp(150px,14vw,200px);--val:118px;--gap:20px;position:relative;padding-bottom:46px}
+.gx-fact__grid{position:absolute;top:0;bottom:46px;left:calc(var(--name) + var(--gap));right:calc(var(--val) + var(--gap));pointer-events:none}
+.gx-fact__tick{position:absolute;top:0;bottom:0;left:var(--at);width:1px;background:var(--gv-line)}
+.gx-fact__tick i{position:absolute;bottom:-24px;left:0;color:var(--gv-muted);font:400 11px/1 var(--gv-mono);font-style:normal;transform:translateX(-50%)}
+.gx-fact__axis{position:absolute;left:calc(var(--name) + var(--gap));right:calc(var(--val) + var(--gap));bottom:0;margin:0;color:var(--gv-muted);font:400 11px/1.4 var(--gv-mono);text-align:right}
+.gv-body .gx-fact__row{position:relative;display:grid;grid-template-columns:var(--name) minmax(0,1fr) var(--val);align-items:center;gap:var(--gap);width:100%;min-height:72px;margin:0;padding:12px 0;border:0;border-bottom:1px solid var(--gv-line);background:transparent;color:var(--gv-ink);font:inherit;text-align:left;cursor:pointer}
+.gx-fact__row::before{content:'';position:absolute;left:clamp(-24px,-1.6vw,-12px);top:14px;bottom:14px;width:3px;background:var(--gv-lime);opacity:0;transition:opacity .25s}
+.gx-fact__row[aria-pressed="true"]::before{opacity:1}
+.gx-fact__name b{display:block;font-size:16px;font-weight:500;line-height:1.25}
+.gx-fact__name small{display:block;margin-top:3px;color:var(--gv-muted);font:400 11px/1.4 var(--gv-mono)}
+.gx-fact__track{position:relative;z-index:1;height:28px}
+.gx-fact__bar{position:absolute;top:6px;left:var(--from);width:calc(var(--to) - var(--from));height:16px;background:var(--gv-lime);transform-origin:left;transition:background-color .25s}
+.gx-fact__row[aria-pressed="true"] .gx-fact__bar,.gx-fact__row:hover .gx-fact__bar{background:var(--gv-lime-ink)}
+.gx-fact__whisker{position:absolute;top:13px;left:var(--from);width:calc(var(--to) - var(--from));height:2px;background:var(--gv-green)}
+.gx-fact__whisker::before,.gx-fact__whisker::after{content:'';position:absolute;top:-6px;width:2px;height:14px;background:var(--gv-green)}
+.gx-fact__whisker::before{left:0}
+.gx-fact__whisker::after{right:0}
+.gx-fact__value{text-align:right}
+.gx-fact__value b{display:block;color:var(--gv-green);font:400 clamp(22px,1.9vw,28px)/1 var(--gv-display);letter-spacing:-.03em;white-space:nowrap}
+.gx-fact__value small{display:block;margin-top:6px;color:var(--gv-muted);font:400 11px/1.3 var(--gv-mono)}
+.gx-js .gx-fact[data-reveal] .gx-fact__bar{transform:scaleX(0)}
+.gx-js .gx-fact[data-reveal] .gx-fact__whisker{opacity:0}
+.gx-js .gx-fact.is-in .gx-fact__bar{transform:none;transition:transform 1s var(--gv-ease) calc(.25s + var(--i) * .12s),background-color .25s}
+.gx-js .gx-fact.is-in .gx-fact__whisker{opacity:1;transition:opacity .5s ease calc(.95s + var(--i) * .12s)}
+.gx-fact__detail{position:sticky;top:calc(var(--gv-header) + 24px);padding:clamp(20px,2vw,28px);background:var(--gv-green);color:#fff}
+.gv-body .gx-fact__detail-name b{font-size:18px;font-weight:500}
+.gx-fact__detail-name span{display:block;margin-top:4px;color:var(--gv-on-dark);font:400 11px/1.4 var(--gv-mono)}
+.gv-body .gx-fact__big{margin-top:20px}
+.gx-fact__big b{display:block;color:#fff;font:400 clamp(46px,4.2vw,68px)/.92 var(--gv-display);letter-spacing:-.05em}
+.gx-fact__big>span{display:block;margin-top:10px;color:var(--gv-on-dark);font-size:14px;line-height:1.45}
+.gx-fact__figure{display:grid;grid-template-columns:minmax(92px,118px) minmax(0,1fr);align-items:center;gap:18px;margin:22px 0 0;padding-top:18px;border-top:1px solid var(--gv-line-dark)}
+.gx-fact__illu{display:block;width:100%;height:auto}
+.gx-illu__jambe{fill:rgba(255,255,255,.06)}
+.gx-fact__illu [data-part] *{fill:#1B4B3A;stroke:rgba(255,255,255,.5);stroke-width:1.3;transition:fill .3s,stroke .3s}
+.gx-fact__illu[data-active="textile"] [data-part="textile"] *,.gx-fact__illu[data-active="aluminium"] [data-part="aluminium"] *,.gx-fact__illu[data-active="mousse"] [data-part="mousse"] *,.gx-fact__illu[data-active="plastique"] [data-part="plastique"] *{fill:var(--gv-lime);stroke:#A8D97A}
+.gx-fact__figure figcaption span{display:block;color:var(--gv-on-dark);font:500 10.5px/1.4 var(--gv-mono);letter-spacing:.06em;text-transform:uppercase}
+.gx-fact__figure figcaption b{display:block;margin-top:6px;color:#fff;font-size:15px;font-weight:400;line-height:1.45}
+.gx-fact__detail dl{margin:22px 0 0;border-top:1px solid var(--gv-line-dark)}
+.gx-fact__detail dl div{padding:12px 0;border-bottom:1px solid var(--gv-line-dark)}
+.gx-fact__detail dt{color:var(--gv-on-dark);font:500 10.5px/1.4 var(--gv-mono);letter-spacing:.06em;text-transform:uppercase}
+.gx-fact__detail dd{margin:4px 0 0;color:#fff;font-size:15px;line-height:1.45}
+.gx-fact__table{margin-top:26px;border-top:1px solid var(--gv-line)}
+.gx-fact__table summary{padding:14px 0;color:var(--gv-green);font:500 11px/1.4 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.gx-fact__table table{width:100%;border-collapse:collapse;font-size:14.5px}
+.gx-fact__table caption{padding-bottom:10px;color:var(--gv-muted);font-size:13px;text-align:left}
+.gx-fact__table th,.gx-fact__table td{padding:10px 12px 10px 0;border-bottom:1px solid var(--gv-line);font-weight:400;text-align:left;vertical-align:top}
+.gx-fact__table thead th{color:var(--gv-muted);font:500 10.5px/1.4 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase}
+.gx-fact__table th small{display:block;color:var(--gv-muted);font:400 11px/1.4 var(--gv-mono)}
+.gx-fact__table td{font-variant-numeric:tabular-nums}
+.gx-fact__foot{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:10px 32px;margin-top:22px}
+.gv-body .gx-fact__foot p:first-child{color:var(--gv-ink);font-size:15px}
+.gx-fact__foot b{margin-right:6px;color:var(--gv-green);font:400 32px/1 var(--gv-display);letter-spacing:-.04em}
+.gv-body .gx-fact__foot .gx-note{margin-top:0}
+
+/* Économies carbone : textes des sections réutilisées ---------------------------- */
+.gx-steps__head>div>p:not(.gx-eyebrow){max-width:620px;margin-top:22px;color:var(--gv-muted);font-size:16.5px;line-height:1.7}
+.gv-body .gx-steps__note{margin-top:20px}
+.gv-body p.gx-priorities__intro{max-width:640px;margin-top:22px;color:var(--gv-on-dark);font-size:16.5px;line-height:1.7}
+.gx-priorities__head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);align-items:end;gap:clamp(32px,5vw,96px)}
+.gv-body p.gx-priorities__stat{color:var(--gv-on-dark);font-size:15.5px;line-height:1.6}
+.gx-priorities__stat b{display:block;margin-bottom:12px;color:#fff;font:400 clamp(44px,4.4vw,76px)/.9 var(--gv-display);letter-spacing:-.055em}
+.gv-body p.gx-priorities__note{max-width:640px;margin-top:clamp(32px,3vw,48px);color:var(--gv-on-dark);font-size:15px;line-height:1.65}
+
+/* Économies carbone : limites de l'estimation ------------------------------------ */
+.gx-caveat{padding:var(--gx-section) 0;background:var(--gv-pale);border-top:1px solid var(--gv-line)}
+.gx-caveat__grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);align-items:start;gap:clamp(32px,5vw,96px)}
+.gx-caveat__body ul{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.gx-caveat__body li{position:relative;padding-left:22px;color:var(--gv-ink);font-size:16px;line-height:1.6}
+.gx-caveat__body li::before{content:'';position:absolute;left:0;top:.78em;width:12px;height:1px;background:var(--gv-green)}
+.gv-body .gx-caveat__body p{margin-top:24px;color:var(--gv-muted);font-size:15.5px;line-height:1.65}
+.gx-caveat__body .gv-text-link{margin-top:16px}
+
+/* Appel final ---------------------------------------------------------------------- */
+.gx-next{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);align-items:end;gap:clamp(32px,5vw,96px);padding-top:var(--gx-section);padding-bottom:var(--gx-section);border-top:1px solid var(--gv-line)}
+.gx-next__body p{max-width:520px;color:var(--gv-muted);font-size:16px;line-height:1.65}
+.gx-next__actions{display:flex;flex-wrap:wrap;gap:12px 16px;margin-top:28px}
+
+/* Ordinateur compact ---------------------------------------------------------- */
+@media(max-width:1180px){
+ .gx-etapes li:nth-child(4)::before{display:none}
+ .gx-postes__share{display:none}
+ .gx-fact__body{grid-template-columns:minmax(0,1fr)}
+ .gx-fact__detail{position:static}
+ .gx-formula__calc{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .gx-formula__calc>div:nth-child(4){border-left:0}
+ .gx-formula__calc>div:nth-child(n+4){border-top:1px solid var(--gv-line)}
+ .gx-formula__calc>div:last-child{grid-column:span 2}
+ .gx-steps__list{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .gx-steps__list li:nth-child(4){border-left:0}
+ .gx-steps__list li:nth-child(n+4){border-top:1px solid var(--gv-line)}
+}
+
+/* Tablette ------------------------------------------------------------------- */
+@media(max-width:900px){
+ .gx-split,.gx-steps__head,.gx-priorities__head,.gx-rbeu__grid,.gx-next,.gx-caveat__grid{grid-template-columns:1fr}
+ .gx-split__photo{max-width:560px}
+ .gx-priorities__list{grid-template-columns:1fr}
+ .gx-priorities__list li+li{margin-top:28px;padding-left:0;border-left:0;border-top:1px solid var(--gv-line-dark)}
+ .gx-rbeu__card{position:static}
+}
+
+/* Mobile ----------------------------------------------------------------------- */
+@media(max-width:650px){
+ .gx-fact{padding:22px 16px}
+ .gx-fact__chart{padding-bottom:0}
+ .gx-fact__grid,.gx-fact__axis{display:none}
+ .gv-body .gx-fact__row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name value" "track track";row-gap:10px}
+ .gx-fact__name{grid-area:name}
+ .gx-fact__value{grid-area:value}
+ .gx-fact__track{grid-area:track;background:linear-gradient(var(--gv-line),var(--gv-line)) 0 50%/100% 1px no-repeat}
+ .gx-fact__row::before{left:-10px}
+ .gx-fact__foot{grid-template-columns:minmax(0,1fr)}
+ .gx-steps__list{grid-template-columns:1fr}
+ .gx-steps__list li{border-left:0}
+ .gx-etapes li+li::before{display:none}
+ .gx-steps__list li+li{border-top:1px solid var(--gv-line)}
+ .gx-steps__num{font-size:48px}
+ .gv-body .gx-steps__list h3{margin-top:18px}
+ .gx-rbeu__texts li{grid-template-columns:1fr}
+ .gx-rbeu__texts time{grid-row:auto;margin-bottom:6px}
+ .gx-next__actions .gv-btn{width:100%}
+ .gx-formula__calc{grid-template-columns:1fr}
+ .gx-formula__calc>div,.gx-formula__calc>div:last-child{grid-column:auto;flex-direction:row;align-items:baseline;gap:16px;border-left:0}
+ .gx-formula__calc>div+div{border-top:1px solid var(--gv-line)}
+ .gx-formula__calc dd{margin-left:auto;font-size:40px}
+}

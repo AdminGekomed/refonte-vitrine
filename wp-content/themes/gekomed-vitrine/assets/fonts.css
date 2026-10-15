@@ -1,0 +1,10 @@
+/* Polices du site, en WOFF2 réduit aux caractères latins et aux signes utilisés (€, ≈, CO₂, flèches, guillemets).
+   Générées depuis les TTF d'origine (font-0 à font-3, font-8, font-9) avec fontTools. */
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(polices/dm-sans-400.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(polices/dm-sans-500.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:swap;src:url(polices/dm-sans-600.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:700;font-display:swap;src:url(polices/dm-sans-700.woff2) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(polices/newsreader-400-italique.woff2) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(polices/newsreader-400.woff2) format('woff2')}
+/* JetBrains Mono (variable, sous-ensemble latin) : libellés du catalogue. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url(jetbrains-mono.woff2) format('woff2')}

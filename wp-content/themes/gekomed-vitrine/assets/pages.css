@@ -91,16 +91,24 @@
 
 /* Économies carbone : postes de l'empreinte du neuf, avec pictogrammes (catalogue p. 38) ---- */
 .gx-postes li{justify-content:flex-start}
+/* Part de chaque poste, en haut à droite de sa case ; la matière, premier poste, en vert foncé. */
+.gx-postes li{position:relative}
+.gx-postes__part{position:absolute;top:clamp(18px,1.8vw,28px);right:clamp(18px,1.8vw,28px);color:var(--gv-green);font:400 clamp(26px,2.2vw,34px)/1 var(--gv-display);letter-spacing:-.04em}
+.gx-postes__part small{font-size:.55em;letter-spacing:0}
+.gx-postes li.is-principal{background:var(--gv-green);color:#fff}
+.gx-postes li.is-principal .gx-postes__part{color:var(--gv-lime);font-size:clamp(40px,3.6vw,58px)}
+.gv-body .gx-postes li.is-principal h3{color:#fff}
+.gx-postes li.is-principal p{color:var(--gv-on-dark)}
+.gv-body .gx-postes li.is-principal .gx-postes__more{color:var(--gv-lime)}
+.gv-body p.gx-postes__source{margin-top:14px;color:var(--gv-muted);font:400 11px/1.5 var(--gv-mono);letter-spacing:.02em}
+.gv-body p.gx-steps__note{max-width:340px;color:var(--gv-muted);font-size:14px;line-height:1.6}
+.gx-steps__note b{color:var(--gv-green);font-weight:600}
 .gx-postes__picto{display:block;width:clamp(44px,3.6vw,58px);height:auto;color:var(--gv-lime);transition:transform .45s var(--gv-ease)}
 .gx-postes li:hover .gx-postes__picto{transform:translateY(-3px)}
 .gv-body .gx-postes h3{margin-top:clamp(26px,2.6vw,40px)}
 .gv-body .gx-postes__more{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:18px;color:var(--gv-green);font:500 11px/1.4 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase}
 .gx-postes__more span{transition:transform .25s var(--gv-ease)}
 .gx-postes__more:hover span{transform:translateY(2px)}
-.gx-postes__share{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,4fr);margin-top:14px}
-.gv-body .gx-postes__share p{position:relative;margin:0 clamp(12px,1.2vw,20px);padding-top:16px;color:var(--gv-muted);font:400 11px/1.5 var(--gv-mono);text-align:center}
-.gx-postes__share p::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;border:2px solid var(--gv-green);border-top:0}
-.gx-postes__share p:first-child::before{border-color:var(--gv-lime)}
 
 /* Notre atelier : étapes avec pictogramme et numéro d'ordre */
 .gx-etapes__top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
@@ -114,6 +122,7 @@
 .gx-fact__head>div{max-width:640px}
 .gv-body .gx-fact h3{font-size:clamp(26px,2.4vw,38px);line-height:1.05;letter-spacing:-.035em}
 .gv-body .gx-fact__head p:not(.gx-eyebrow){margin-top:14px;color:var(--gv-muted);font-size:15.5px;line-height:1.65}
+.gv-body .gx-fact__head p.gx-fact__sous-titre{margin-top:12px;color:var(--gv-green);font-size:clamp(18px,1.5vw,21px);line-height:1.4}
 .gx-fact__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);align-items:start;gap:clamp(24px,3vw,48px);margin-top:clamp(28px,3vw,44px)}
 .gx-fact__chart{--name:clamp(150px,14vw,200px);--val:118px;--gap:20px;position:relative;padding-bottom:46px}
 .gx-fact__grid{position:absolute;top:0;bottom:46px;left:calc(var(--name) + var(--gap));right:calc(var(--val) + var(--gap));pointer-events:none}
@@ -199,7 +208,6 @@
 /* Ordinateur compact ---------------------------------------------------------- */
 @media(max-width:1180px){
  .gx-etapes li:nth-child(4)::before{display:none}
- .gx-postes__share{display:none}
  .gx-fact__body{grid-template-columns:minmax(0,1fr)}
  .gx-fact__detail{position:static}
  .gx-formula__calc{grid-template-columns:repeat(3,minmax(0,1fr))}

@@ -196,8 +196,8 @@ html .gx-site-loader.is-cancelled{opacity:0;visibility:hidden;pointer-events:non
 
 /* Filets entre sections : tous identiques, 1 px d'un bord à l'autre de l'écran, comme le haut de l'atelier
    et de la carte (les sections .gx-wrap sont limitées à --gv-max ; le body coupe le débordement horizontal). */
-.gx-partners,.gx-journal{position:relative}
-.gx-partners::before,.gx-simu::before,.gx-journal::before{content:'';position:absolute;top:0;left:50%;width:100vw;height:1px;background:var(--gv-line);transform:translateX(-50%)}
+.gx-figures,.gx-partners,.gx-journal{position:relative}
+.gx-figures::before,.gx-partners::before,.gx-simu::before,.gx-journal::before{content:'';position:absolute;top:0;left:50%;width:100vw;height:1px;background:var(--gv-line);transform:translateX(-50%)}
 
 /* Partenaires ----------------------------------------------------------------- */
 .gx-partners{padding-top:var(--gx-section);padding-bottom:calc(var(--gx-section)*.3)}
@@ -513,8 +513,8 @@ html .gx-site-loader.is-cancelled{opacity:0;visibility:hidden;pointer-events:non
 }
 
 /* Engagements : illustrations vectorielles à plat et cartes à angles droits. */
-.gx-process{padding-bottom:clamp(32px,3vw,48px)}
-.gx-process + .gx-figures{padding-top:clamp(32px,3vw,48px)}
+/* Sous les trois cartes, même filet et mêmes espacements qu'entre les autres sections. */
+.gx-process{padding-bottom:calc(var(--gx-section)*.7)}
 .gx-process__pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:clamp(28px,3vw,36px) 0 0;padding:0;list-style:none;border:0}
 .gx-process.is-journey .gx-process__pillars{margin-top:clamp(28px,3vw,36px)}
 .gx-process__pillars li{display:flex;flex-direction:row;align-items:center;gap:20px;min-height:152px;padding:24px;border:1px solid var(--gv-line);border-radius:0;background:#fff;color:var(--gv-muted);font-size:14px;line-height:1.55}

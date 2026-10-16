@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Parcours d'une attelle (accueil, section « Prolonger la vie des attelles »)
+   Parcours d'une attelle (accueil, section « Nous collectons vos attelles usagées »)
    Scène 3D pilotée par le défilement, de la borne de la pharmacie jusqu'au
    carton de l'atelier. La caméra cadre chaque poste et ses gestes. Mêmes matériaux
    que les maquettes (objets blancs, filets vert profond) ; l'attelle est le

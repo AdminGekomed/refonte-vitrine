@@ -58,8 +58,10 @@
   const io = new IntersectionObserver(entries => entries.forEach(entry => {
    if (!entry.isIntersecting) return;
    io.unobserve(entry.target);
-   const el = entry.target, end = parseInt(el.dataset.count, 10), t0 = performance.now(), dur = 1100;
-   const step = now => { const k = Math.min(1, (now - t0) / dur); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+   const el = entry.target, end = parseFloat(el.dataset.count), t0 = performance.now(), dur = 1100;
+   // data-decimals : chiffres après la virgule, écrits à la française (3,3).
+   const dec = parseInt(el.dataset.decimals || '0', 10), fmt = v => dec ? v.toLocaleString('fr-FR', {minimumFractionDigits: dec, maximumFractionDigits: dec}) : Math.round(v);
+   const step = now => { const k = Math.min(1, (now - t0) / dur); el.textContent = fmt(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
    requestAnimationFrame(step);
   }), {threshold: 0.6});
   counters.forEach(el => io.observe(el));

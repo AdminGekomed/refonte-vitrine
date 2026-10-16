@@ -34,6 +34,9 @@
 /* Base ------------------------------------------------------------------- */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--gv-header) + 24px)}
+/* Fond découvert par le rebond d'iOS (vitrine.js) : vert pâle en haut de l'accueil, vert du pied de page en bas. */
+html.gv-fond-pale{background:var(--gv-pale)}
+html.gv-fond-bas{background:var(--gv-green)}
 body.gv-body{margin:0;padding:0;background:#fff;color:var(--gv-ink);font:400 16px/1.65 var(--gv-sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
 body.gv-body h1,body.gv-body h2,body.gv-body h3,body.gv-body h4{margin:0;padding:0;color:inherit;font-family:var(--gv-display);font-weight:400;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
 body.gv-body p{margin:0;padding:0;text-wrap:pretty}
@@ -56,7 +59,7 @@ img{max-width:100%;height:auto}
 .gv-body p.gv-label{padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid var(--gv-green)}
 
 /* En-tête du site ---------------------------------------------------------- */
-.gv-header{position:sticky;top:0;z-index:1000;height:var(--gv-header);display:flex;align-items:center;justify-content:space-between;gap:28px;padding:0 var(--gv-gutter);background:rgba(255,255,255,.97);border-bottom:1px solid var(--gv-line)}
+.gv-header{position:sticky;top:0;z-index:1000;height:var(--gv-header);display:flex;align-items:center;justify-content:space-between;gap:28px;padding:0 var(--gv-gutter);background:#fff;border-bottom:1px solid var(--gv-line)}
 .admin-bar .gv-header{top:32px}
 .gv-logo{display:flex;flex:0 0 auto}
 .gv-logo img{width:132px;height:auto}

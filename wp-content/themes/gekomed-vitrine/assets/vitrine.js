@@ -1,4 +1,22 @@
 (() => {
+ // Rebond d'iOS en haut et en bas de page, et teinte de Safari sous l'heure : la couleur découverte prolonge la page
+ // (vert pâle de la scène en haut de l'accueil, vert du pied de page en bas) au lieu d'une bande blanche ou grise.
+ const racine=document.documentElement, accueil=document.body.classList.contains('home');
+ const teinte=document.querySelector('meta[name="theme-color"]'), entete=document.querySelector('.gv-header');
+ let fondEnAttente=false;
+ const fond=()=>{
+  fondEnAttente=false;
+  const bas=scrollY>(racine.scrollHeight-innerHeight)/2, pale=accueil&&!bas;
+  if(racine.classList.contains('gv-fond-bas')!==bas)racine.classList.toggle('gv-fond-bas',bas);
+  if(racine.classList.contains('gv-fond-pale')!==pale)racine.classList.toggle('gv-fond-pale',pale);
+  const chargement=racine.classList.contains('gx-site-loading')||racine.classList.contains('gx-site-revealing');
+  const couleur=pale&&!chargement&&entete&&!entete.classList.contains('is-solid')?'#F4F8F2':'#ffffff';
+  if(teinte&&teinte.content!==couleur)teinte.content=couleur;
+ };
+ addEventListener('scroll',()=>{if(!fondEnAttente){fondEnAttente=true;requestAnimationFrame(fond);}},{passive:true});
+ new MutationObserver(fond).observe(racine,{attributes:true,attributeFilter:['class']});
+ if(entete)new MutationObserver(fond).observe(entete,{attributes:true,attributeFilter:['class']});
+ fond();
  // Le ruban du catalogue se dessine quand il entre à l'écran.
  const ribbons=document.querySelectorAll('.gv-ribbon:not(.gv-ribbon--hero)');
  if(ribbons.length&&'IntersectionObserver' in window){

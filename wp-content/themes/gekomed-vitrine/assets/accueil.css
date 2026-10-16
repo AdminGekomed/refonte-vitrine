@@ -11,7 +11,7 @@
 html.gx-site-loading .home .gv-header,html.gx-site-revealing .home .gv-header{opacity:0;visibility:hidden;pointer-events:none}
 .home .gv-header.is-site-entered{animation:gx-enter-header .7s var(--gv-ease) both}
 @keyframes gx-enter-header{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
-.home .gv-header.is-solid,.home .gv-header:has(.gv-nav.is-open){background:rgba(255,255,255,.96);border-bottom-color:var(--gv-line)}
+.home .gv-header.is-solid,.home .gv-header:has(.gv-nav.is-open){background:#fff;border-bottom-color:var(--gv-line)}
 .gx-sentinel{position:absolute;top:0;left:0;width:1px;height:calc(var(--gv-header) + 40px);pointer-events:none}
 
 /* Couverture ------------------------------------------------------------------ */
@@ -94,7 +94,7 @@ html.gx-site-loading .home .gv-header,html.gx-site-revealing .home .gv-header{op
 .gx-step__ill{display:none}
 /* Parcours 3D : caméra par poste, texte et scène dans des zones distinctes. */
 .gx-process{padding-top:calc(var(--gv-header) + clamp(40px,5vw,72px))}
-.gx-process.is-journey{padding-top:var(--gv-header)}
+.gx-process.is-journey{padding-top:var(--gv-header);background:linear-gradient(var(--gv-pale),var(--gv-pale)) 0 0/100% var(--gv-header) no-repeat}
 .gx-process:not(.is-journey) .gx-journey,.gx-process.is-journey .gx-process__static{display:none}
 .gx-journey{--gx-units:14;position:relative;height:calc(var(--gx-units) * 44svh + 100svh)}
 .gx-journey__pin{position:sticky;top:var(--gv-header);height:calc(100svh - var(--gv-header));overflow:hidden;background:var(--gv-pale)}

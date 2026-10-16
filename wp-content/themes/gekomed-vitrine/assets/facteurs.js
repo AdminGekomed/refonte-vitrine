@@ -1,5 +1,5 @@
-/* Facteurs d'émission par matière (page Économies carbone) : panneau de détail et schéma d'attelle pour la matière
-   survolée, sélectionnée au clavier ou touchée. Textes posés avec textContent. */
+/* Empreinte des matières d'une botte de marche (page Économies carbone) : panneau de détail et schéma de la botte pour la
+   matière survolée, sélectionnée au clavier ou touchée. Textes posés avec textContent. */
 (() => {
  const root = document.querySelector('[data-facteurs]');
  if (!root) return;
@@ -13,8 +13,9 @@
   const d = active.dataset;
   detail('name').textContent = d.name;
   detail('sub').textContent = d.sub;
-  detail('value').textContent = d.kg;
-  detail('range').textContent = d.range;
+  detail('share').textContent = d.share;
+  detail('masse').textContent = d.masse;
+  detail('facteur').textContent = d.facteur;
   detail('use').textContent = d.use;
   if (illu) illu.dataset.active = d.part;
  }

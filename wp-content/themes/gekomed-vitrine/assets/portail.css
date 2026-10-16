@@ -1,0 +1,186 @@
+/* Page mère (page-portail.php, maquette du 16/10/2026) : présente les deux activités et oriente vers le bon site.
+   Reprend les jetons de vitrine.css ; ce fichier ne contient que ce qui est propre à la page. */
+.gp .gx-wrap{width:100%;max-width:var(--gv-max);margin-left:auto;margin-right:auto;padding-left:var(--gv-gutter);padding-right:var(--gv-gutter)}
+.gp>section{position:relative;isolation:isolate}
+/* Filets entre sections : 1 px, d'un bord à l'autre de l'écran, comme sur l'accueil. */
+.gp>section+section::before{content:'';position:absolute;top:0;left:50%;width:100vw;height:1px;margin-left:-50vw;background:var(--gv-line)}
+.gp em{color:inherit}
+
+/* Repère des deux activités : même nom, même pastille, partout sur la page.
+   La marque en vert plein, le reconditionnement en contour. */
+.gp-tag{display:inline-flex;align-items:center;flex:none;gap:8px;min-height:24px;padding:3px 9px;border:1px solid var(--gv-green);font:500 10.5px/1.3 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.gp-tag--marque{background:var(--gv-green);color:#fff}
+.gp-tag--recond{background:#fff;color:var(--gv-green)}
+.gp-tag:empty{min-height:0;width:10px;height:10px;padding:0}
+.gp-tag--clair.gp-tag--marque{border-color:#fff;background:#fff;color:var(--gv-green)}
+.gp-tag--clair.gp-tag--recond{border-color:rgba(255,255,255,.8);background:transparent;color:#fff}
+
+/* En-tête : le logo et les deux activités, sans le menu de la vitrine. */
+.gp-header__nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,40px)}
+.gp-header__nav a{display:inline-flex;align-items:center;gap:10px;padding:10px 0;font:500 15px/1 var(--gv-sans);color:var(--gv-ink);white-space:nowrap}
+.gp-header__nav a:hover{color:var(--gv-green);text-decoration:underline;text-decoration-color:var(--gv-lime);text-decoration-thickness:2px;text-underline-offset:6px}
+.gp-header__contact{padding:0 16px!important;min-height:44px;border:1px solid var(--gv-green)}
+
+/* Têtes de section : titre à gauche, chapeau à droite. */
+.gp-section__tete{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,96px);align-items:end;margin-bottom:clamp(44px,5vw,80px)}
+.gp-body .gp h2{font-size:var(--gv-h2)}
+.gp-section__chapeau,.gp-section__chapeau p{max-width:60ch;margin:0;color:var(--gv-muted);font-size:17px;line-height:1.65}
+.gp-section__chapeau p+p{margin-top:22px}
+
+/* ——— A. Deux portes ——— */
+.gp-hero__intro{padding-top:clamp(36px,4vw,64px);padding-bottom:clamp(28px,3vw,44px)}
+.gp-body .gp-hero h1{max-width:24ch;font-size:clamp(36px,4.1vw,66px);line-height:1.02;letter-spacing:-.04em}
+.gp-hero__lead{max-width:52ch;margin:20px 0 0;color:var(--gv-muted);font-size:clamp(16px,1.25vw,19px);line-height:1.55}
+/* Les portes occupent le reste du premier écran. */
+.gp-portes{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 1fr;gap:2px;height:clamp(520px,calc(100svh - 330px),780px);background:#fff}
+.gp-portes__ligne{z-index:1}
+/* Zones posées par portail.js sur les visages et les attelles : invisibles, la ligne les contourne. */
+.gp-eviter{position:absolute;z-index:-1;visibility:hidden;pointer-events:none}
+.gp-eviter i{display:block;width:100%;height:100%}
+.gp-porte{position:relative;display:flex;align-items:flex-end;overflow:hidden;color:#fff;background:var(--gv-dark)}
+.gp-porte__img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transition:transform 1.2s var(--gv-ease)}
+.gp-porte::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(0deg,rgba(10,46,34,.97) 0%,rgba(10,46,34,.86) 30%,rgba(10,46,34,.28) 62%,rgba(10,46,34,.06) 100%)}
+.gp-porte__body{position:relative;z-index:2;width:100%;max-width:640px;padding:clamp(26px,3.4vw,60px)}
+.gp-porte__k{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 20px;color:var(--gv-on-dark);font:500 11px/1.5 var(--gv-mono);letter-spacing:.05em;text-transform:uppercase}
+.gp-body .gp-porte h2,.gp-body .gp-porte h3{margin-bottom:18px;color:#fff;font-size:clamp(30px,2.9vw,50px);line-height:1.02}
+.gp-porte__texte{max-width:48ch;margin:0 0 30px;color:var(--gv-on-dark);font-size:16px;line-height:1.6}
+.gp-porte__actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px}
+.gp-porte .gv-text-link{color:#fff}
+@media(hover:hover){.gp-porte:hover .gp-porte__img{transform:scale(1.03)}}
+
+/* ——— B. La boucle : deux photos rondes, une même ligne qui fait le tour de chacune. ——— */
+.gp-hero__intro--centre{display:block;max-width:980px;text-align:center}
+.gp-body .gp-hero__intro--centre h1{margin-inline:auto}
+.gp-hero__intro--centre .gp-hero__lead{max-width:52ch;margin:24px auto 0}
+.gp-huit{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,8vw,160px);padding:clamp(56px,6vw,96px) max(var(--gv-gutter),calc((100% - 1240px) / 2)) clamp(72px,8vw,128px)}
+.gp-huit__ligne{position:absolute;inset:0;z-index:-1;width:100%;height:100%;overflow:visible;pointer-events:none}
+.gp-huit__ligne path{fill:none;stroke:var(--gv-lime);stroke-width:clamp(14px,1.7vw,26px);stroke-linecap:round;stroke-linejoin:round}
+.gv-line-js .gp-huit__ligne path{stroke-dasharray:1 1;stroke-dashoffset:1}
+.gv-line-js .gp-huit__ligne.is-drawn path{stroke-dashoffset:0;transition:stroke-dashoffset 3.2s var(--gv-ease)}
+.gp-lobe{display:flex;flex-direction:column;align-items:center;text-align:center}
+.gp-lobe__photo{width:clamp(220px,25vw,380px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--gv-dark)}
+.gp-lobe__photo img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%)}
+.gp-lobe__body{display:flex;flex-direction:column;align-items:center;max-width:520px;margin-top:clamp(84px,8vw,120px)}
+.gp-lobe__k{margin:0 0 18px}
+.gp-body .gp-lobe h2{margin-bottom:16px;font-size:clamp(28px,2.5vw,42px);line-height:1.04}
+.gp-lobe__body>p:not(.gp-lobe__k){max-width:46ch;margin:0 0 28px;color:var(--gv-muted)}
+.gp-lobe__actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 28px}
+.gp-lobe .gv-text-link{color:var(--gv-green)}
+
+/* ——— C. Profil d'abord ——— */
+.gp-hero--profil{min-height:clamp(620px,88vh,900px);display:flex;align-items:stretch;color:#fff;background:var(--gv-dark);overflow:hidden}
+.gp-hero__media{position:absolute;inset:0;z-index:-2}
+.gp-hero__media img{width:100%;height:100%;object-fit:cover;object-position:30% 60%}
+.gp-hero--profil::after{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(0deg,rgba(10,46,34,.96) 0%,rgba(10,46,34,.78) 40%,rgba(10,46,34,.42) 100%),linear-gradient(90deg,rgba(10,46,34,.7) 0%,rgba(10,46,34,0) 70%)}
+.gp-hero__ligne{z-index:-1}
+.gp-hero__grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(360px,.9fr);gap:clamp(36px,5vw,96px);align-items:end;padding-top:clamp(56px,6vw,96px);padding-bottom:clamp(44px,5vw,80px)}
+.gp-hero--profil .gp-hero__intro{display:block;padding:0}
+.gp-body .gp-hero--profil h1{max-width:18ch;font-size:clamp(36px,4.2vw,68px)}
+.gp-hero--profil .gp-hero__lead{margin-top:28px;color:var(--gv-on-dark)}
+.gp-choix{background:#fff;color:var(--gv-ink);padding:clamp(24px,2.4vw,36px)}
+.gp-body .gp-choix h2{margin-bottom:10px;font-size:clamp(26px,2.2vw,36px)}
+.gp-choix ul{margin:0;padding:0;list-style:none}
+.gp-choix a{display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--gv-line);color:var(--gv-ink)}
+.gp-choix li:last-child a{border-bottom:0;padding-bottom:4px}
+.gp-choix__qui{font:500 19px/1.25 var(--gv-sans);letter-spacing:-.01em}
+.gp-choix__quoi{grid-column:1;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;color:var(--gv-muted);font-size:14px}
+.gp-choix a>span[aria-hidden]{grid-column:2;grid-row:1/3;font-size:20px;color:var(--gv-green);transition:transform .25s var(--gv-ease)}
+.gp-choix a:hover .gp-choix__qui{text-decoration:underline;text-decoration-color:var(--gv-lime);text-decoration-thickness:2px;text-underline-offset:5px}
+.gp-choix a:hover>span[aria-hidden]{transform:translate(3px,-3px)}
+.gp-duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.4vw,22px);padding-top:clamp(72px,8vw,128px)}
+.gp-duo .gp-porte{min-height:clamp(520px,62vh,680px)}
+.gp-duo .gp-porte__body{max-width:none}
+
+/* ——— Pourquoi deux métiers : la boucle d'une attelle, étape par étape ——— */
+.gp-boucle{padding-top:clamp(88px,9vw,150px);padding-bottom:clamp(88px,9vw,150px)}
+.gp-legende{display:grid;gap:10px;margin:28px 0 0;padding:0;list-style:none;font-size:14px}
+.gp-legende li{display:flex;align-items:center;gap:12px}
+.gp-legende .gp-tag{min-width:156px;justify-content:center}
+.gp-etapes{counter-reset:etape;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.gp-etape{position:relative;display:flex;flex-direction:column;gap:14px;padding:26px clamp(16px,1.6vw,28px) 30px;border-top:1px solid var(--gv-green)}
+.gp-etape+.gp-etape{border-left:1px solid var(--gv-line)}
+/* Les deux activités au-dessus des étapes : un trait plein pour la marque, un trait lime pour le reconditionnement. */
+.gp-etape::before{content:'';position:absolute;top:-1px;left:0;right:0;height:5px;background:var(--gv-green)}
+.gp-etape--recond::before{background:var(--gv-lime)}
+.gp-etape__num{font:400 14px/1 var(--gv-sans);color:var(--gv-muted)}
+.gp-body .gp-etape h3{font-size:clamp(22px,1.7vw,28px);line-height:1.1}
+.gp-etape p{margin:0;color:var(--gv-muted);font-size:15px;line-height:1.6}
+.gp-etape__lien{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;margin-top:auto;padding-top:14px;border-top:1px solid var(--gv-line);color:var(--gv-ink)}
+.gp-etape__lien .gp-tag{grid-column:1;justify-self:start}
+.gp-etape__lien>span:not(.gp-tag):not([aria-hidden]){grid-column:1;font:500 15px/1.3 var(--gv-sans)}
+.gp-etape__lien>span[aria-hidden]{grid-column:2;grid-row:1/3;color:var(--gv-green);transition:transform .25s var(--gv-ease)}
+.gp-etape__lien:hover>span:not(.gp-tag):not([aria-hidden]){text-decoration:underline;text-decoration-color:var(--gv-lime);text-decoration-thickness:2px;text-underline-offset:5px}
+.gp-etape__lien:hover>span[aria-hidden]{transform:translate(2px,-2px)}
+.gp-boucle__retour{display:flex;align-items:center;gap:14px;max-width:none;margin:36px 0 0;color:var(--gv-ink);font-size:16px}
+.gp-boucle__retour span{display:inline-grid;place-items:center;flex:none;width:40px;height:40px;border:1px solid var(--gv-green);border-radius:50%;font-size:20px;color:var(--gv-green)}
+
+/* ——— Par où commencer ——— */
+.gp-profils{padding-top:clamp(88px,9vw,150px);padding-bottom:clamp(88px,9vw,150px)}
+.gp-profils__grille{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2vw,32px);margin:0;padding:0;list-style:none}
+.gp-profil{display:flex;flex-direction:column;padding-top:24px;border-top:1px solid var(--gv-green)}
+.gp-body .gp-profil h3{margin-bottom:14px;font-size:clamp(22px,1.7vw,28px);line-height:1.12}
+.gp-profil>p{margin:0 0 26px;color:var(--gv-muted);font-size:15px;line-height:1.6}
+.gp-profil__liens{margin:auto 0 0;padding:0;list-style:none;border-top:1px solid var(--gv-line)}
+.gp-profil__liens a{display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--gv-line);color:var(--gv-ink)}
+.gp-profil__liens a>span:first-child{font:500 16px/1.3 var(--gv-sans)}
+.gp-profil__liens .gp-tag{grid-column:1;grid-row:2;justify-self:start}
+.gp-profil__liens a>span[aria-hidden]{grid-column:2;grid-row:1/3;font-size:18px;color:var(--gv-green);transition:transform .25s var(--gv-ease)}
+.gp-profil__liens a:hover>span:first-child{text-decoration:underline;text-decoration-color:var(--gv-lime);text-decoration-thickness:2px;text-underline-offset:5px}
+.gp-profil__liens a:hover>span[aria-hidden]{transform:translate(2px,-2px)}
+
+/* ——— Questions ——— */
+.gp-faq{padding-top:clamp(88px,9vw,150px);padding-bottom:clamp(88px,9vw,150px)}
+.gp-faq>div>p{max-width:340px;margin-top:26px;color:var(--gv-muted);font-size:15px}
+.gp-faq details a{color:var(--gv-green);text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:4px}
+
+/* ——— Une seule entreprise ——— */
+.gp-entreprise{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:clamp(28px,5vw,96px);padding-top:clamp(80px,8vw,128px);padding-bottom:clamp(80px,8vw,128px)}
+.gp-faits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3vw,48px) clamp(24px,3vw,56px);margin:0;padding:0;list-style:none}
+.gp-faits li{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid var(--gv-green)}
+.gp-faits b{font:500 clamp(20px,1.6vw,26px)/1.15 var(--gv-sans);letter-spacing:-.02em}
+.gp-faits span{color:var(--gv-muted);font-size:15px;line-height:1.6}
+.gp-faits a{color:var(--gv-green);text-decoration:underline;text-decoration-color:var(--gv-lime);text-underline-offset:4px}
+
+/* Partenaires : les logos de la vitrine, en gris, sur une rangée qui passe à la ligne. */
+.gp-confiance{grid-column:1/-1;padding-top:clamp(40px,4vw,64px);border-top:1px solid var(--gv-line)}
+.gp-confiance__titre{margin:0 0 22px;color:var(--gv-muted);font-size:15px}
+.gp-confiance__logos{display:flex;flex-wrap:wrap;align-items:center;gap:28px clamp(28px,3.4vw,56px);margin:0;padding:0;list-style:none}
+.gp-confiance__logos li{display:flex;align-items:center;height:60px}
+.gp-confiance__logos img{width:auto;max-width:150px;max-height:52px;object-fit:contain;filter:grayscale(1);opacity:.72}
+
+/* Pied : le logo n'est pas un lien, la page est elle-même l'accueil. */
+.gp-footer .gv-footer__logo img{display:block;width:clamp(150px,14vw,220px);height:auto}
+
+@media(prefers-reduced-motion:no-preference){
+ .gp-hero__intro>*,.gp-hero__grid>*{animation:gx-rise .9s var(--gv-ease) both}
+ .gp-hero__intro>:nth-child(2),.gp-hero__grid>:nth-child(2){animation-delay:.12s}
+}
+@media(prefers-reduced-motion:reduce){.gp-porte__img{transition:none}}
+
+@media(max-width:1100px){
+ .gp-etapes{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+ .gp-etape:nth-child(odd){border-left:0}
+ .gp-etape:last-child{grid-column:1/-1}
+ .gp-profils__grille{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+ .gp-hero__grid{grid-template-columns:1fr}
+ .gp-choix{max-width:640px}
+}
+@media(max-width:860px){
+ .gp-hero__intro,.gp-section__tete,.gp-entreprise{grid-template-columns:1fr}
+ .gp-portes{grid-template-columns:1fr;height:auto}
+ .gp-porte{min-height:clamp(480px,72vh,640px)}
+ .gp-duo{grid-template-columns:1fr}
+ .gp-huit{grid-template-columns:1fr;gap:72px}
+ .gp-lobe__body{margin-top:84px}
+}
+@media(max-width:760px){
+ .gp-header__nav a:not(.gp-header__contact){display:none}
+ .gp-faits{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .gp-etapes,.gp-profils__grille{grid-template-columns:1fr}
+ .gp-etape,.gp-etape+.gp-etape{border-left:0}
+ .gp-etape:last-child{grid-column:auto}
+ .gp-porte__actions .gv-btn{width:100%}
+ .gp-legende li{align-items:flex-start;flex-direction:column;gap:6px}
+}

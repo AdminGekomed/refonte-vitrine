@@ -1,0 +1,325 @@
+<!doctype html><html lang="fr-FR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Gekomed &#8211; Gekomed</title>
+<meta name='robots' content='noindex, nofollow' />
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('gv-line-js');</script>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/wp-content/themes/gekomed-vitrine/assets/polices/newsreader-400-italique.woff2" as="font" type="font/woff2" crossorigin>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="gekomed-vitrine-inline-inline-css">
+
+/* Règles des anciennes images Divi retirées le 14/10/2026 : Divi ne sert plus. */
+/* Carte */
+.gekomed-map-wrap { position: relative; }
+.gekomed-map-wrap .leaflet-container { border-radius: 16px !important; }
+.gkm-marker { background: transparent !important; border: 0 !important; }
+/* Style cluster par defaut markercluster, recolore en vert monochrome */
+.leaflet-container .marker-cluster-small,
+.leaflet-container .marker-cluster-medium,
+.leaflet-container .marker-cluster-large { background-color: rgba(74, 168, 109, 0.5) !important; }
+.leaflet-container .marker-cluster-small div,
+.leaflet-container .marker-cluster-medium div,
+.leaflet-container .marker-cluster-large div { background-color: rgba(13, 110, 63, 0.8) !important; color: #fff !important; }
+.leaflet-container .marker-cluster span { color: #fff !important; font-weight: 700; }
+
+/* Barre de recherche d adresse */
+.gekomed-map-wrap .gkm-geo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: stretch;
+}
+.gekomed-map-wrap .gkm-search {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+.gekomed-map-wrap .gkm-search-icon {
+    position: absolute;
+    left: 14px;
+    color: #6b7280;
+    pointer-events: none;
+    z-index: 1;
+}
+.gekomed-map-wrap .gkm-geo-input {
+    width: 100%;
+    padding: 12px 44px 12px 42px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: rgba(255,255,255,.95);
+    color: #1f2937;
+    font-size: 15px;
+    line-height: 1.2;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.gekomed-map-wrap .gkm-geo-input:hover { border-color: #9ca3af; }
+.gekomed-map-wrap .gkm-geo-input:focus {
+    border-color: #0d6e3f;
+    border-width: 2px;
+    padding: 11px 43px 11px 41px;
+    box-shadow: 0 0 0 3px rgba(13,110,63,.18);
+}
+.gekomed-map-wrap .gkm-geo-locate {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    color: #0d6e3f;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.gekomed-map-wrap .gkm-geo-locate:hover { background: rgba(13,110,63,.1); }
+.gekomed-map-wrap .gkm-geo-submit {
+    background: #0d6e3f;
+    color: #fff;
+    border: 0;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease, transform .05s ease;
+}
+.gekomed-map-wrap .gkm-geo-submit:hover { background: #0a5631; }
+.gekomed-map-wrap .gkm-geo-submit:active { transform: translateY(1px); }
+.gekomed-map-wrap .gkm-geo-status {
+    min-height: 18px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+}
+.gekomed-map-wrap .gkm-geo-status.is-error { color: #fda4af; }
+
+/* Marker "votre position" */
+.gkm-user { background: transparent !important; border: 0 !important; }
+.gkm-user-dot {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 6px rgba(37,99,235,.25);
+}
+
+/* Popup interne : titre + tag categorie + adresse + lien */
+.leaflet-popup-content .gkm-popup { font-family: inherit; min-width: 200px; }
+.leaflet-popup-content .gkm-popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+.leaflet-popup-content .gkm-popup-tag {
+    display: inline-block;
+    background: #0d6e3f;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-addr {
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+.leaflet-popup-content .gkm-popup-link {
+    color: #0d6e3f;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+}
+.leaflet-popup-content .gkm-popup-link:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .gekomed-map-wrap .gkm-geo { flex-direction: column; }
+    .gekomed-map-wrap .gkm-geo-submit { width: 100%; }
+    .gekomed-map-wrap .gkm-geo-input { font-size: 14px; padding: 11px 44px 11px 40px; }
+}
+
+/*# sourceURL=gekomed-vitrine-inline-inline-css */
+</style>
+<link rel='stylesheet' id='gv-fonts-css' href='/wp-content/themes/gekomed-vitrine/assets/fonts.css?ver=1791964476' media='all' />
+<link rel='stylesheet' id='gv-design-css' href='/wp-content/themes/gekomed-vitrine/assets/vitrine.css?ver=1792144918' media='all' />
+<link rel='stylesheet' id='gv-portail-css' href='/wp-content/themes/gekomed-vitrine/assets/portail.css?ver=1792156240' media='all' />
+<meta name="generator" content="WordPress 7.1" />
+<meta name="generator" content="WooCommerce 10.7.0" />
+<link rel="canonical" href="https://refonte.gekomed.com/portail/" />
+<link rel='shortlink' href='/?p=2408' />
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/wp-content/uploads/2024/10/cropped-GECKO-Sante--180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2024/10/cropped-GECKO-Sante--270x270.png" />
+</head>
+<body class="wp-singular page-template-default page page-id-2408 wp-embed-responsive wp-theme-gekomed-vitrine gv-body gp-body gp--portes theme-gekomed-vitrine woocommerce-no-js"><a class="gv-skip" href="#main-content">Aller au contenu</a>
+<header class="gv-header gp-header"><a class="gv-logo" href="/portail/" aria-label="Gekomed"><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/logo-gekomed.svg" alt="Gekomed" width="1400" height="243"></a><nav class="gp-header__nav" aria-label="Nos deux activités"><a href="https://boutique.gekomed.com/"><span class="gp-tag gp-tag--marque" aria-hidden="true"></span>Attelles Gekomed</a><a href="/"><span class="gp-tag gp-tag--recond" aria-hidden="true"></span>Reconditionnement</a><a class="gp-header__contact" href="#contact">Contact</a></nav></header>
+<main id="main-content" class="gp">
+
+<section class="gp-hero gp-hero--portes" aria-labelledby="gp-titre">
+ <div class="gx-wrap gp-hero__intro">
+  <h1 id="gp-titre">Nous concevons des attelles neuves <em>et reconditionnons celles qui ont déjà servi.</em></h1>
+  <p class="gp-hero__lead">Deux métiers pour une même idée : une attelle portée quelques semaines ne devrait pas finir à la poubelle.</p>
+ </div>
+ <div class="gp-portes">
+  <article class="gp-porte gp-porte--marque"><img class="gp-porte__img" src="/wp-content/themes/gekomed-vitrine/assets/visuels/portail-marque.webp" alt="" width="1200" height="1800" style="--pos:50% 88%" data-eviter="0.32 0.18 0.56 0.35; 0.38 0.54 0.6 0.78" fetchpriority="high" decoding="async"><div class="gp-porte__body"><p class="gp-porte__k"><span class="gp-tag gp-tag--marque gp-tag--clair">Attelles Gekomed</span>boutique.gekomed.com</p><h2>Des attelles neuves, <em>pensées pour être reconditionnées.</em></h2><p class="gp-porte__texte">Une gamme éco-conçue et fabriquée en France. Sur prescription, nous gérons la prise en charge et vous livrons chez vous. Les professionnels de santé ont leur espace.</p><div class="gp-porte__actions"><a class="gv-btn gv-btn--white" href="https://boutique.gekomed.com/">Aller à la boutique <span aria-hidden="true">↗</span></a><a class="gv-text-link" href="https://boutique.gekomed.com/professionnels/">Espace professionnels <span aria-hidden="true">↗</span></a></div></div></article><article class="gp-porte gp-porte--recond"><img class="gp-porte__img" src="/wp-content/themes/gekomed-vitrine/assets/visuels/atelier-controle.webp" alt="" width="1254" height="1254" style="--pos:50% 18%" data-eviter="0.35 0.05 0.6 0.3; 0.48 0.36 0.94 0.78" decoding="async"><div class="gp-porte__body"><p class="gp-porte__k"><span class="gp-tag gp-tag--recond gp-tag--clair">Reconditionnement</span>gekomed.com</p><h2>Des attelles usagées, <em>remises en circulation.</em></h2><p class="gp-porte__texte">Nous collectons les attelles dont les patients n’ont plus besoin, quelle que soit leur marque, puis nous les reconditionnons dans notre atelier en Île-de-France.</p><div class="gp-porte__actions"><a class="gv-btn gv-btn--white" href="/">Découvrir le reconditionnement <span aria-hidden="true">↗</span></a><a class="gv-text-link" href="/points-de-collecte/">Déposer mon attelle <span aria-hidden="true">↗</span></a></div></div></article>  <div class="gv-ligne-fond-calque gp-portes__ligne" data-ligne-fond data-ligne-seule data-ligne-eviter=".gp-porte__body > *, .gp-eviter" aria-hidden="true"></div>
+ </div>
+</section>
+
+
+<section class="gx-wrap gp-boucle" id="boucle" aria-labelledby="gp-boucle-titre">
+ <div class="gp-section__tete">
+  <h2 id="gp-boucle-titre">Pourquoi <em>deux métiers ?</em></h2>
+  <div class="gp-section__chapeau">
+   <p>La plupart des attelles ne servent que quelques semaines, puis finissent au fond d’un placard ou à la poubelle. Nous agissons aux deux bouts de leur vie : en concevant des attelles neuves faites pour être reconditionnées, et en redonnant une seconde vie à celles qui ont déjà servi.</p>
+   <ul class="gp-legende"><li><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span>notre marque d’attelles neuves, sur boutique.gekomed.com</span></li><li><span class="gp-tag gp-tag--recond">Reconditionnement</span><span>la collecte et l’atelier, sur gekomed.com</span></li></ul>
+  </div>
+ </div>
+ <ol class="gp-etapes">
+  <li class="gp-etape gp-etape--marque">
+   <span class="gp-etape__num" aria-hidden="true">01</span>
+   <h3>Concevoir</h3>
+   <p>Nos attelles neuves sont pensées dès le départ pour pouvoir être reconditionnées, et fabriquées en France.</p>
+   <a class="gp-etape__lien" href="https://boutique.gekomed.com/boutique/"><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span>La gamme</span><span aria-hidden="true">↗</span></a>
+  </li>
+  <li class="gp-etape gp-etape--marque">
+   <span class="gp-etape__num" aria-hidden="true">02</span>
+   <h3>Prescrire et porter</h3>
+   <p>Le médecin prescrit, nous livrons. Le patient porte son attelle le temps de sa convalescence, souvent quelques semaines.</p>
+   <a class="gp-etape__lien" href="https://boutique.gekomed.com/remboursement/"><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span>Le remboursement</span><span aria-hidden="true">↗</span></a>
+  </li>
+  <li class="gp-etape gp-etape--recond">
+   <span class="gp-etape__num" aria-hidden="true">03</span>
+   <h3>Déposer</h3>
+   <p>Quand il n’en a plus besoin, il la dépose dans une borne Gekomed : en pharmacie, en clinique ou chez son kiné.</p>
+   <a class="gp-etape__lien" href="/points-de-collecte/"><span class="gp-tag gp-tag--recond">Reconditionnement</span><span>Les points de collecte</span><span aria-hidden="true">↗</span></a>
+  </li>
+  <li class="gp-etape gp-etape--recond">
+   <span class="gp-etape__num" aria-hidden="true">04</span>
+   <h3>Reconditionner</h3>
+   <p>À l’atelier, chaque attelle est triée, nettoyée, contrôlée et tracée, selon un procédé strict.</p>
+   <a class="gp-etape__lien" href="/atelier/"><span class="gp-tag gp-tag--recond">Reconditionnement</span><span>Notre atelier</span><span aria-hidden="true">↗</span></a>
+  </li>
+  <li class="gp-etape gp-etape--recond">
+   <span class="gp-etape__num" aria-hidden="true">05</span>
+   <h3>Remettre en circulation</h3>
+   <p>L’attelle repart servir un autre patient. Celles qui ne peuvent pas l’être sont revalorisées ou recyclées.</p>
+   <a class="gp-etape__lien" href="/catalogue-reconditionne/"><span class="gp-tag gp-tag--recond">Reconditionnement</span><span>Le catalogue</span><span aria-hidden="true">↗</span></a>
+  </li>
+ </ol>
+ <p class="gp-boucle__retour"><span aria-hidden="true">↺</span> Et l’attelle reconditionnée repart chez un nouveau patient : la boucle recommence à l’étape 2.</p>
+ <span class="gv-ligne-fond-calque" data-ligne-fond data-ligne-seule data-ligne-eviter=".gp-section__tete > *, .gp-etape > *, .gp-boucle__retour" aria-hidden="true"></span>
+</section>
+
+<section class="gx-wrap gp-profils" aria-labelledby="gp-profils-titre">
+ <div class="gp-section__tete">
+  <h2 id="gp-profils-titre">Par où <em>commencer ?</em></h2>
+  <p class="gp-section__chapeau">Selon votre situation, l’une ou l’autre de nos activités vous concerne, parfois les deux.</p>
+ </div>
+ <ul class="gp-profils__grille">
+  <li class="gp-profil">
+   <h3>Vous avez une ordonnance</h3>
+   <p>Commandez votre attelle Gekomed : nous vérifions la prescription, gérons le remboursement et livrons chez vous.</p>
+   <ul class="gp-profil__liens">
+    <li><a href="https://boutique.gekomed.com/boutique/"><span>Commander une attelle</span><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span aria-hidden="true">↗</span></a></li>
+    <li><a href="https://boutique.gekomed.com/remboursement/"><span>Comprendre le remboursement</span><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span aria-hidden="true">↗</span></a></li>
+   </ul>
+  </li>
+  <li class="gp-profil">
+   <h3>Votre attelle ne vous sert plus</h3>
+   <p>Déposez-la dans une borne près de chez vous : elle pourra servir à un autre patient.</p>
+   <ul class="gp-profil__liens">
+    <li><a href="/points-de-collecte/"><span>Trouver un point de collecte</span><span class="gp-tag gp-tag--recond">Reconditionnement</span><span aria-hidden="true">↗</span></a></li>
+    <li><a href="/atelier/"><span>Voir notre atelier</span><span class="gp-tag gp-tag--recond">Reconditionnement</span><span aria-hidden="true">↗</span></a></li>
+   </ul>
+  </li>
+  <li class="gp-profil">
+   <h3>Pharmacie, clinique ou cabinet de kiné</h3>
+   <p>Accueillez une borne de collecte pour vos patients, et équipez-les en attelles Gekomed à tarif professionnel.</p>
+   <ul class="gp-profil__liens">
+    <li><a href="/contact/"><span>Devenir point de collecte</span><span class="gp-tag gp-tag--recond">Reconditionnement</span><span aria-hidden="true">↗</span></a></li>
+    <li><a href="https://boutique.gekomed.com/professionnels/"><span>Espace professionnels</span><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span aria-hidden="true">↗</span></a></li>
+   </ul>
+  </li>
+  <li class="gp-profil">
+   <h3>Médecin ou chirurgien</h3>
+   <p>Prescrivez des attelles pensées pour durer, et orientez vos patients vers la collecte après usage.</p>
+   <ul class="gp-profil__liens">
+    <li><a href="https://boutique.gekomed.com/boutique/"><span>Découvrir la gamme</span><span class="gp-tag gp-tag--marque">Attelles Gekomed</span><span aria-hidden="true">↗</span></a></li>
+    <li><a href="/formulaire-chirurgien/"><span>Échanger avec nous</span><span class="gp-tag gp-tag--recond">Reconditionnement</span><span aria-hidden="true">↗</span></a></li>
+   </ul>
+  </li>
+ </ul>
+</section>
+
+<section class="gx-wrap gp-faq gv-faq-layout" aria-labelledby="gp-faq-titre">
+ <div>
+  <h2 id="gp-faq-titre">Vous vous posez <em>la question ?</em></h2>
+  <p>Les réponses aux questions que l’on nous pose le plus sur nos deux activités.</p>
+ </div>
+ <div class="gv-faq">
+  <details><summary>Pourquoi reconditionner aussi les attelles d’autres marques ?</summary><p>Parce qu’une attelle qui ne sert plus finit le plus souvent jetée, quelle que soit sa marque. Nos bornes acceptent la plupart des attelles orthopédiques : c’est un service rendu aux patients et aux établissements qui les accueillent, et le moyen de remettre en circulation le plus grand nombre d’attelles.</p></details>
+  <details><summary>Une attelle reconditionnée est-elle sûre ?</summary><p>Chaque attelle est triée, désinfectée, lavée, séchée et contrôlée dans notre atelier en Île-de-France, puis tracée. Notre activité de remise en bon état d’usage est déclarée auprès de l’ANSM, et nous appliquons le référentiel NF S97-414.</p></details>
+  <details><summary>Les attelles Gekomed neuves sont-elles remboursées ?</summary><p>Oui, sur prescription médicale. Vous commandez sur la boutique avec votre ordonnance, votre carte Vitale et votre attestation de mutuelle : nous nous occupons de la prise en charge et vous livrons chez vous. <a href="https://boutique.gekomed.com/remboursement/">Comment ça marche ↗</a></p></details>
+  <details><summary>Où déposer une attelle dont je n’ai plus besoin ?</summary><p>Dans une borne Gekomed : en pharmacie, en clinique, à l’hôpital ou chez votre kiné. <a href="/points-de-collecte/">Voir la carte des points de collecte</a></p></details>
+ </div>
+</section>
+
+<section class="gx-wrap gp-entreprise" aria-labelledby="gp-entreprise-titre">
+ <h2 id="gp-entreprise-titre">Une seule entreprise, <em>en France.</em></h2>
+ <ul class="gp-faits">
+  <li><b>Une entreprise française</b><span>Nos attelles neuves sont fabriquées en France, et notre atelier de reconditionnement est en Île-de-France.</span></li>
+  <li><b>Une activité déclarée</b><span>Notre activité de remise en bon état d’usage est déclarée auprès de l’ANSM. Nous appliquons le référentiel NF S97-414.</span></li>
+  <li><b>730 points de collecte</b><span>Pharmacies, cliniques, hôpitaux et cabinets de kiné accueillent nos bornes.</span></li>
+  <li><b>Un seul contact</b><span>Pour la boutique comme pour la collecte : <a href="tel:+33184190968">01 84 19 09 68</a> ou <a href="mailto:contact@gekomed.com">contact@gekomed.com</a>.</span></li>
+ </ul>
+ <div class="gp-confiance">
+  <p class="gp-confiance__titre">Ils nous font confiance</p>
+  <ul class="gp-confiance__logos">
+   <li><img src="/wp-content/uploads/2024/10/logo-hopitaux-pitie-salpetriere.png" alt="Pitié-Salpêtrière AP-HP" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/LOGO-PHARMACTIV-2023-1.webp" alt="Pharmactiv" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo-Ramsay-Sante.webp" alt="Ramsay Santé" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo_CDS.webp" alt="Clinique du sport" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/logo-sfa.webp" alt="Société Francophone d’Arthroscopie" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Groupe-Hospitalier-Lariboisiere-Fernand-Widal-AP-HP-LOGO.webp" alt="Lariboisière AP-HP" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Body-House-Kine.webp" alt="Body House Kiné" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Clinique-du-Sport-Ramsay-1-e1730315884440.webp" alt="Clinique du Landy" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Remove-bg.ai_1730207846952.webp" alt="AthletiK Kiné" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/almaviva-logo.webp" alt="Almaviva Santé" loading="lazy" decoding="async"></li>
+   <li><img src="/wp-content/themes/gekomed-vitrine/assets/visuels/partenaires/Logo_ADEME.webp" alt="ADEME" loading="lazy" decoding="async"></li>
+  </ul>
+ </div>
+</section>
+
+</main>
+<footer class="gv-footer gp-footer" id="contact"><div class="gv-footer__top"><div class="gv-footer__claim"><p class="gv-eyebrow">L’orthopédie verte</p><h2>Une question ?<br><em>Écrivez-nous.</em></h2><a class="gv-btn gv-btn--white" href="/contact/">Nous contacter <span aria-hidden="true">↗</span></a></div><span class="gv-footer__logo"><img src="/wp-content/themes/gekomed-vitrine/assets/logo-blanc.webp" alt="Gekomed" width="823" height="144" loading="lazy"></span></div><div class="gv-footer__main"><div><h3>Attelles Gekomed</h3><a href="https://boutique.gekomed.com/">La boutique ↗</a><a href="https://boutique.gekomed.com/remboursement/">Remboursement ↗</a><a href="https://boutique.gekomed.com/professionnels/">Espace professionnels ↗</a></div><div><h3>Reconditionnement</h3><a href="/">Notre démarche</a><a href="/points-de-collecte/">Déposer une attelle</a><a href="/atelier/">Notre atelier</a></div><div><h3>Contact</h3><a href="tel:+33184190968">01 84 19 09 68</a><a href="mailto:contact@gekomed.com">contact@gekomed.com</a><p>63 bis rue de Sèvres<br>92100 Boulogne-Billancourt</p></div></div><div class="gv-footer__bottom"><span>© 2026 Gekomed, l’orthopédie verte</span><div><a href="/mentions-legales/">Mentions légales</a><a href="https://boutique.gekomed.com/mentions-legales/">Mentions légales de la boutique</a></div></div></footer>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/gekomed-vitrine/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="gv-ui-js" src="/wp-content/themes/gekomed-vitrine/assets/vitrine.js?ver=1792144427"></script>
+<script id="gv-portail-js" src="/wp-content/themes/gekomed-vitrine/assets/portail.js?ver=1792155640"></script>
+<script id="gv-ligne-entete-js" src="/wp-content/themes/gekomed-vitrine/assets/ligne-entete.js?ver=1792070964"></script>
+</body></html>

@@ -76,6 +76,7 @@ img{max-width:100%;height:auto}
 .gv-shop__label img{display:block;width:auto;height:17px}
 .gv-shop>span[aria-hidden]{font:400 17px/1 var(--gv-sans);transition:transform .25s var(--gv-ease)}
 .gv-shop:hover{background:var(--gv-dark)}
+.gv-nav .gv-shop--menu{display:none}
 .gv-shop:hover>span[aria-hidden]{transform:translate(2px,-2px)}
 .gv-menu-toggle{display:none;width:44px;height:44px;border:1px solid var(--gv-green);border-radius:0;background:#fff;align-items:center;justify-content:center;flex-direction:column;gap:6px}
 .gv-menu-toggle span{width:18px;height:1.5px;background:var(--gv-green);transition:transform .25s var(--gv-ease)}
@@ -718,6 +719,12 @@ img{max-width:100%;height:auto}
  .gv-shop__label{gap:5px}
  .gv-shop__label small{font-size:7.5px;letter-spacing:.02em}
  .gv-shop__label img{height:14px}
+ /* Le bouton boutique quitte l'en-tête pour le bas du menu ouvert, sur toute sa largeur. */
+ .gv-header__actions>.gv-shop{display:none}
+ .gv-nav .gv-shop--menu{display:flex;justify-content:space-between;height:64px;margin-top:22px;padding:0 18px;border-bottom:0}
+ .gv-nav .gv-shop--menu .gv-shop__label{gap:7px}
+ .gv-nav .gv-shop--menu .gv-shop__label small{font-size:9px;letter-spacing:.05em}
+ .gv-nav .gv-shop--menu .gv-shop__label img{height:20px}
  .gv-btn{gap:16px;min-height:48px;padding:14px 16px;font-size:11px}
  .gv-text-link{font-size:11px}
  .gv-folio{margin-bottom:36px}

@@ -1560,7 +1560,8 @@ window.GxParcours = function(root){
    event.preventDefault(); event.stopImmediatePropagation(); requestedStep = null;
    var y = window.scrollY + target.getBoundingClientRect().top - headerOff - 24;
    target.setAttribute('tabindex', '-1'); target.focus({preventScroll:true});
-   window.scrollTo({top:Math.max(0, Math.round(y)), behavior:'smooth'});
+   // « Passer » saute directement à la suite, sans faire défiler tout le parcours.
+   window.scrollTo({top:Math.max(0, Math.round(y)), behavior: link.hasAttribute('data-passer') ? 'instant' : 'smooth'});
   }, true);
  });
  function manualScroll(){ requestedStep = null; }

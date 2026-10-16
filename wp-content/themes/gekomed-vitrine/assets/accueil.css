@@ -154,13 +154,16 @@ html .gx-site-loader.is-cancelled{opacity:0;visibility:hidden;pointer-events:non
 .gx-journey.is-entering .gx-journey__intro>:nth-child(4){animation-delay:.79s}
 @keyframes gx-enter-copy{from{opacity:0;transform:translateY(16px);clip-path:inset(0 0 100%)}to{opacity:1;transform:translateY(0);clip-path:inset(0)}}
 @media(prefers-reduced-motion:reduce){.gx-site-loader>img,.gx-journey.is-entering .gx-journey__intro>*,.home .gv-header.is-site-entered{animation:none!important}.gx-site-loader,.gx-journey__load-track>span{transition:none}}
-.gx-journey__controls{position:absolute;z-index:3;left:var(--gv-gutter);right:var(--gv-gutter);bottom:26px;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.gx-journey__controls{position:absolute;z-index:3;left:var(--gv-gutter);right:var(--gv-gutter);bottom:26px;display:flex;align-items:center;justify-content:flex-end;gap:12px;pointer-events:none}
+.gx-journey__controls>*{pointer-events:auto}
+.gx-journey.is-loading:not(.is-entering) .gx-journey__controls{visibility:hidden}
 .gx-journey__pager{display:flex;align-items:center;gap:10px;padding:4px;background:rgba(244,248,242,.96);border:1px solid var(--gv-line)}
 .gv-body .gx-journey__pager button{display:grid;place-items:center;width:42px;height:42px;padding:0;border:0;background:transparent;color:var(--gv-green);font:400 22px/1 var(--gv-sans);transition:background .2s,color .2s}
 .gv-body .gx-journey__pager button:hover:not(:disabled){background:var(--gv-green);color:#fff}
 .gv-body .gx-journey__pager button:disabled{opacity:.25;cursor:default}
 .gx-journey__status{min-width:104px;text-align:center;color:var(--gv-green);font:500 11px/1 var(--gv-mono);letter-spacing:.04em;text-transform:uppercase}
-.gx-journey__skip{padding:12px 0;color:var(--gv-green);font:500 11px/1.4 var(--gv-mono);letter-spacing:.03em}
+.gx-journey__skip{padding:12px 0;color:var(--gv-green);font:500 11px/1.4 var(--gv-mono);letter-spacing:.08em;text-transform:uppercase;opacity:.75;transition:opacity .2s ease}
+.gx-journey__skip:hover,.gx-journey__skip:focus-visible{opacity:1}
 .gx-journey__skip span{margin-left:10px}
 .gx-journey__skip:hover{text-decoration:underline;text-underline-offset:4px}
 /* Manipulation libre du modèle dans l’introduction. */
